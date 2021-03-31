@@ -69,6 +69,8 @@
           outputCanvas.width = 2040
           outputCanvas.height = 702
           ctx.clearRect(0, 0, outputCanvas.width, outputCanvas.height)
+          ctx.fillStyle='white'
+          ctx.fillRect(0, 0, outputCanvas.width, outputCanvas.height)
 
           ctx.drawImage($image, 1936, 85, 562, 128+2, 15, 8, 430, 102+2)  // Paket bis x kg
           ctx.drawImage($image, 2743,105,344,95-6, 621,30,259,71-4)       // DHL Logo
