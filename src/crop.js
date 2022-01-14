@@ -49,30 +49,44 @@ function readFile() {
                 $image.src = canvas.toDataURL()
                 await p
                 await new Promise(r => setTimeout(r, 1e2)) // small delay helps
-                let outputCanvas = document.createElement('canvas'), ctx = outputCanvas.getContext('2d')
-                outputCanvas.width = 2040
-                outputCanvas.height = 702
-                ctx.clearRect(0, 0, outputCanvas.width, outputCanvas.height)
+
+                let outputCanvas = document.createElement('canvas'),
+                    ctx = outputCanvas.getContext('2d')
+                outputCanvas.width = 1606   // 12px = 1mm
+                outputCanvas.height = 696   // 59mm print width for QL-Printers
+
                 ctx.fillStyle = 'white'
                 ctx.fillRect(0, 0, outputCanvas.width, outputCanvas.height)
-
-                ctx.drawImage($image, 1936, 85, 562, 128 + 2, 15, 8, 430, 102 + 2)  // Paket bis x kg
-                ctx.drawImage($image, 2743, 105, 344, 95 - 6, 621, 30, 259, 71 - 4)       // DHL Logo
-
-                ctx.drawImage($image, 1963, 204, 800, 204, 32, 103, 607, 155)         // Von:
-                ctx.drawImage($image, 1964, 410, 800, 425, 38, 263, 519, 275)         // An:
-
-                ctx.drawImage($image, 1964, 934, 1123, 150, 36, 552, 842, 113)        // Sendungsnummer, Entgelt Bezahlt
-
                 ctx.strokeStyle = 'black'
                 ctx.lineWidth = 2
-                ctx.beginPath(); ctx.moveTo(36, 99); ctx.lineTo(36 + 845, 99); ctx.stroke();
-                ctx.beginPath(); ctx.moveTo(946, 18); ctx.lineTo(946, 18 + 648); ctx.stroke();
-                ctx.beginPath(); ctx.moveTo(1202, 18); ctx.lineTo(1202, 18 + 648); ctx.stroke();
 
-                ctx.drawImage($image, 2766, 215, 328, 294, 590, 120, 328, 294)        // Sicherheitscode
-                ctx.drawImage($image, 2148, 1960, 786, 300, 1238, 366, 787, 300)     // Identcode
-                ctx.drawImage($image, 2148, 1552, 786, 300, 1238, 38, 786, 300)       // Leitcode
+                ctx.drawImage($image,   // Kopf
+                    1964, 108, 1124, 92,
+                    0, 12, 890, 73)
+
+                ctx.drawImage($image,   // Adresse
+                    1964, 210, 785, 625,
+                    0, 95, 580, 465)
+
+                let scSize = 296;
+                ctx.drawImage($image,   // Sicherheitscode
+                    2763, 215, scSize, scSize,
+                    594, 95, scSize, scSize)
+
+                ctx.drawImage($image,   // Sendungsdaten
+                    1964, 933, 1124, 152,
+                    0, 565, 890, 120)
+
+                ctx.beginPath(); ctx.moveTo(910, 12); ctx.lineTo(910, outputCanvas.height - 12); ctx.stroke();
+
+                let barcodeSizeX = 676,
+                    barcodeSizeY = 320;
+                ctx.drawImage($image,   // Leitcode/Routingcode
+                    2198, 1526, barcodeSizeX, barcodeSizeY,
+                    930, 20, barcodeSizeX, barcodeSizeY)
+                ctx.drawImage($image,   // Identcode/Sendungsnummer
+                    2198, 1940, barcodeSizeX, barcodeSizeY,
+                    930, 364, barcodeSizeX, barcodeSizeY)
 
                 viewImg.src = outputCanvas.toDataURL()
                 downloadLabel.disabled = downloadLabelIMG.disabled = true
