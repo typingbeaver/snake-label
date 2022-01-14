@@ -1,3 +1,5 @@
+const debug = false;
+
 const viewImg = document.getElementById('view')
 const { PDFDocument, StandardFonts, rgb } = PDFLib
 let labelArrayBuffer = null
@@ -60,8 +62,16 @@ function readFile() {
                 outputCanvas.width = 1606   // 12px = 1mm
                 outputCanvas.height = 696   // 59mm print width for QL-Printers
 
-                ctx.fillStyle = 'white'
-                ctx.fillRect(0, 0, outputCanvas.width, outputCanvas.height)
+                if (debug) {
+                    ctx.fillStyle = 'lightgreen'    // background
+                    ctx.fillRect(0, 0, outputCanvas.width, outputCanvas.height)
+                    ctx.fillStyle = 'pink'  // 1mm "safety zone" top/bottom
+                    ctx.fillRect(0, 0, outputCanvas.width, 12)
+                    ctx.fillRect(0, outputCanvas.height - 12, outputCanvas.width, outputCanvas.height)
+                } else {
+                    ctx.fillStyle = 'white'
+                    ctx.fillRect(0, 0, outputCanvas.width, outputCanvas.height)
+                }
                 ctx.strokeStyle = 'black'
                 ctx.lineWidth = 2
 
