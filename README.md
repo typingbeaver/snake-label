@@ -12,6 +12,7 @@
 ### Features and benefits
 - **smaller and handier**: sticky labels instead of giant paper pages
 - **as short as possible**: more labels for your money!
+- **unscaled 2D-/barcodes**: best scan quality
 - **without backend**: cropping fully local via JS (keep your data!)
 - optimized for 300dpi
 - optimised PNGs for direct printing via [brother_ql](https://github.com/pklaus/brother_ql)
