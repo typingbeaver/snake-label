@@ -104,11 +104,13 @@ function readFile() {
                     930, 364, barcodeSizeX, barcodeSizeY)
 
                 viewImg.src = outputCanvas.toDataURL()
+                viewImg.hidden = true
                 downloadLabel.disabled = downloadLabelIMG.disabled = true
                 outputCanvas.toBlob((blob) => {
                     const reader = new FileReader()
                     reader.addEventListener('loadend', () => {
                         labelArrayBuffer = reader.result
+                        viewImg.hidden = false
                         downloadLabel.disabled = downloadLabelIMG.disabled = false
                     })
                     reader.readAsArrayBuffer(blob)

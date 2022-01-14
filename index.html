@@ -14,12 +14,22 @@
 </head>
 
 <body>
-    <pre>made by <a href="https://github.com/catSIXe">@catSIXe</a></pre>
-    <input type="file" id="pdfFile" accept="application/pdf">
-    <button onclick="readFile()">Convert to Label-PDF</button>
-    <button id="downloadLabel" disabled onclick="saveLabel()">Download Label-PDF</button>
-    <button id="downloadLabelIMG" disabled onclick="savePNG()">Download Label as PNG Image</button>
-    <img id="view" />
+    <h1>DHL Paket (Privatkunden)</h1>
+    <p>Size: 62mm x 142mm</p>
+    <p style="font-family: monospace;">
+        made by <a href="https://github.com/catSIXe">@catSIXe</a> and <a href="https://github.com/typingbeaver">@typingbeaver</a>
+    </p>
+    <div>
+        <input type="file" id="pdfFile" accept="application/pdf">
+        <button onclick="readFile()">Convert to Label-PDF</button>
+    </div>
+    <div>
+        <img id="view" style="padding: 12px 36px; border: 1px solid black; margin-top: 1em;" hidden/>
+    </div>
+    <div style="margin-top: 1em;">
+        <button id="downloadLabel" disabled onclick="saveLabel()">Download Label-PDF</button>
+        <button id="downloadLabelIMG" disabled onclick="savePNG()">Download Label as PNG Image</button>
+    </div>
 
     <script src="src/crop.js"></script>
 </body>
