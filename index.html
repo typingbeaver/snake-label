@@ -1,18 +1,27 @@
-<html>
-  <head>
-    <title>Paket-Ettiket in JS</title>
-    <meta charset="utf-8" />
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>labelcrop</title>
+
     <script src="pdf.js"></script>
     <script src="pdf.worker.js"></script>
     <script src="https://unpkg.com/pdf-lib@1.4.0"></script>
     <script src="https://unpkg.com/downloadjs@1.4.7"></script>
-  </head>
-  <body>
+</head>
+
+<body>
     <pre>made by <a href="https://github.com/catSIXe">@catSIXe</a></pre>
     <input type="file" id="pdfFile" accept="application/pdf">
     <button onclick="readFile()">Convert to Label-PDF</button>
     <button id="downloadLabel" disabled onclick="saveLabel()">Download Label-PDF</button>
     <button id="downloadLabelIMG" disabled onclick="savePNG()">Download Label as PNG Image</button>
-    <img id="view"/>
-  </body>
+    <img id="view" />
+
+    <script src="src/crop.js"></script>
+</body>
+
 </html>
