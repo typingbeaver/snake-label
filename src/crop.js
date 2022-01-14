@@ -8,18 +8,23 @@ function savePNG() {
 
 async function saveLabel() {
     const pdfDoc = await PDFDocument.create()
-    const page = pdfDoc.addPage([510.24, 175.68])
+    // size in 72dpi
+    // page borders: ends 3mm, top/bottom 1.5mm
+    const page = pdfDoc.addPage([pxTo72Dpi(1610) + mmTo72Dpi(6), mmTo72Dpi(62)])
     const { width, height } = page.getSize()
     const labelImage = await pdfDoc.embedPng(labelArrayBuffer)
     page.drawImage(labelImage, {
-        x: 0,
-        y: 0,
-        width: width,
-        height: height,
+        x: mmTo72Dpi(3),
+        y: mmTo72Dpi(1.5),
+        width: width - mmTo72Dpi(6),
+        height: height - mmTo72Dpi(3),
     })
 
     const pdfBytes = await pdfDoc.save()
     download(pdfBytes, document.getElementById('pdfFile').files[0].name.replace('.pdf', '') + "-Label.pdf", "application/pdf")
+
+    function mmTo72Dpi(length) { return length * 0.03937007874 * 72; }  // mm -> 72dpi
+    function pxTo72Dpi(pixels) { return pixels * 72 / 300. }    // 300dpi px -> 72dpi
 }
 
 function readFile() {
