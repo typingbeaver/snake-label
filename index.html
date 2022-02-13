@@ -13,15 +13,24 @@
     <script src="https://unpkg.com/downloadjs@1.4.7"></script>
 </head>
 
-<body>
-    <h1>DHL Paket (Privatkunden)</h1>
-    <p>Size: 62mm x 142mm</p>
+<body style="display: flex; flex-direction: column; align-items: center;">
+    <h1>LabelCrop</h1>
     <p style="font-family: monospace;">
         made by <a href="https://github.com/catSIXe">@catSIXe</a> and <a href="https://github.com/typingbeaver">@typingbeaver</a>
     </p>
-    <div>
-        <input type="file" id="pdfFile" accept="application/pdf">
-        <button onclick="readFile()">Convert to Label-PDF</button>
+    <div style="display: flex; flex-direction: column; gap: 1em;">
+        <div>
+            <p>DHL Paket (Privatkunden): 62mm x 142mm</p>
+            <p>DHL Paket International (Privatkunden): 62mm x 164mm</p>
+            <select id="label-type">
+                <option value="dhl-privat">DHL Paket (Privatkunden)</option>
+                <option value="dhl-privat-international">DHL International (Privatkunden)</option>
+            </select>
+        </div>
+        <div>
+            <input type="file" id="pdfFile" accept="application/pdf">
+            <button onclick="readFile()">Convert to Label-PDF</button>
+        </div>
     </div>
     <div>
         <img id="view" style="padding: 12px 36px; border: 1px solid black; margin-top: 1em;" hidden/>

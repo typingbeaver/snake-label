@@ -3,6 +3,7 @@ const debug = false;
 const viewImg = document.getElementById('view')
 const { PDFDocument, StandardFonts, rgb } = PDFLib
 let labelArrayBuffer = null
+let label;
 
 function savePNG() {
     download(labelArrayBuffer, document.getElementById('pdfFile').files[0].name.replace('.pdf', '') + "-Label.png", "image/png")
@@ -12,8 +13,10 @@ async function saveLabel() {
     const pdfDoc = await PDFDocument.create()
     // size in 72dpi
     // page borders: ends 3mm, top/bottom 1.5mm
-    const page = pdfDoc.addPage([pxTo72Dpi(1610) + mmTo72Dpi(6), mmTo72Dpi(62)])
-    const { width, height } = page.getSize()
+    const width = pxTo72Dpi(label.width) + mmTo72Dpi(6),
+        height = mmTo72Dpi(62);
+    const page = pdfDoc.addPage([width, height])
+
     const labelImage = await pdfDoc.embedPng(labelArrayBuffer)
     page.drawImage(labelImage, {
         x: mmTo72Dpi(3),
@@ -30,10 +33,10 @@ async function saveLabel() {
 }
 
 function readFile() {
+    label = getLabelType();
     const reader = new FileReader()
     console.log('reading file')
     reader.onload = async function (e) {
-        const arrayBuffer = reader.result
         const loadingTask = PDFJS.getDocument(reader.result)
         let canvas, viewPort
         loadingTask.promise.then(doc => {
@@ -41,7 +44,6 @@ function readFile() {
             return doc.getPage(1)
         })
             .then((page) => {
-                $page = page
                 canvas = document.createElement('canvas'), viewPort = page.getViewport(4, 90)
                 canvas.width = viewPort.width
                 canvas.height = viewPort.height
@@ -51,15 +53,15 @@ function readFile() {
                 }).then(_ => viewPort)
             })
             .then(async viewPort => {
-                let $image = new Image()
-                let p = new Promise(r => $image.onload = r)
-                $image.src = canvas.toDataURL()
+                let image = new Image()
+                let p = new Promise(r => image.onload = r)
+                image.src = canvas.toDataURL()
                 await p
                 await new Promise(r => setTimeout(r, 1e2)) // small delay helps
 
                 let outputCanvas = document.createElement('canvas'),
                     ctx = outputCanvas.getContext('2d')
-                outputCanvas.width = 1606   // 12px = 1mm
+                outputCanvas.width = label.width  // 12px = 1mm
                 outputCanvas.height = 696   // 59mm print width for QL-Printers
 
                 if (debug) {
@@ -75,39 +77,7 @@ function readFile() {
                 ctx.strokeStyle = 'black'
                 ctx.lineWidth = 2
 
-                ctx.drawImage($image,   // Kopf
-                    1964, 108, 1124, 92,
-                    0, 12, 890, 73)
-
-                ctx.drawImage($image,   // Adresse
-                    1964, 210, 785, 625,
-                    0, 95, 580, 465)
-
-                let scSize = 296;
-                ctx.drawImage($image,   // Sicherheitscode
-                    2763, 215, scSize, scSize,
-                    594, 95, scSize, scSize)
-
-                ctx.rotate(-Math.PI / 2);
-                ctx.drawImage($image,   // Sicherheitscode Text
-                    3075, 240, 20, 190,
-                    -395, 647, -20, 190);
-                ctx.rotate(Math.PI / 2);
-
-                ctx.drawImage($image,   // Sendungsdaten
-                    1964, 933, 1124, 152,
-                    0, 565, 890, 120)
-
-                ctx.beginPath(); ctx.moveTo(910, 12); ctx.lineTo(910, outputCanvas.height - 12); ctx.stroke();
-
-                let barcodeSizeX = 676,
-                    barcodeSizeY = 320;
-                ctx.drawImage($image,   // Leitcode/Routingcode
-                    2198, 1526, barcodeSizeX, barcodeSizeY,
-                    930, 20, barcodeSizeX, barcodeSizeY)
-                ctx.drawImage($image,   // Identcode/Sendungsnummer
-                    2198, 1940, barcodeSizeX, barcodeSizeY,
-                    930, 364, barcodeSizeX, barcodeSizeY)
+                label.crop(outputCanvas, ctx, image)
 
                 viewImg.src = outputCanvas.toDataURL()
                 viewImg.hidden = true
@@ -124,4 +94,103 @@ function readFile() {
             })
     }
     reader.readAsArrayBuffer(document.getElementById('pdfFile').files[0])
+}
+
+function getLabelType() {
+    switch (document.getElementById('label-type').value) {
+        case "dhl-privat":
+            return dhlPrivat;
+
+        case "dhl-privat-international":
+            return dhlPrivatInternational;
+    }
+}
+
+const dhlPrivat = {
+    width: 1606,
+    async crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,   // Kopf
+            1964, 108, 1124, 92,
+            0, 12, 890, 73);
+
+        ctx.drawImage(image,   // Adresse
+            1964, 210, 785, 625,
+            0, 95, 580, 465);
+
+        let scSize = 296;
+        ctx.drawImage(image,   // Sicherheitscode
+            2763, 215, scSize, scSize,
+            594, 95, scSize, scSize);
+
+        ctx.rotate(-Math.PI / 2);
+        ctx.drawImage(image,   // Sicherheitscode Text
+            3075, 240, 20, 190,
+            -395, 647, -20, 190);
+        ctx.rotate(Math.PI / 2);
+
+        ctx.drawImage(image,   // Sendungsdaten
+            1964, 933, 1124, 152,
+            0, 565, 890, 120);
+
+        ctx.beginPath(); ctx.moveTo(910, 12); ctx.lineTo(910, outputCanvas.height - 12); ctx.stroke();
+
+        let barcodeSizeX = 676,
+            barcodeSizeY = 320;
+        ctx.drawImage(image,   // Leitcode/Routingcode
+            2198, 1526, barcodeSizeX, barcodeSizeY,
+            930, 20, barcodeSizeX, barcodeSizeY);
+        ctx.drawImage(image,   // Identcode/Sendungsnummer
+            2198, 1940, barcodeSizeX, barcodeSizeY,
+            930, 364, barcodeSizeX, barcodeSizeY);
+    }
+
+}
+
+const dhlPrivatInternational = {
+    width: 1870,
+    crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,   // Kopf
+            1964, 108, 1124, 92,
+            0, 12, 890, 73);
+
+        ctx.drawImage(image,   // Adresse
+            1964, 210, 785, 625,
+            0, 95, 580, 465);
+
+        let scSize = 296;
+        ctx.drawImage(image,   // Sicherheitscode
+            2763, 215, scSize, scSize,
+            594, 95, scSize, scSize);
+
+        ctx.rotate(-Math.PI / 2);
+        ctx.drawImage(image,   // Sicherheitscode Text
+            3075, 240, 20, 190,
+            -395, 647, -20, 190);
+        ctx.rotate(Math.PI / 2);
+
+        ctx.drawImage(image,   // Telefonnummer
+            2770, 740, 300, 35,
+            590, 520, 300, 35);
+
+        ctx.drawImage(image,   // Sendungsdaten
+            1964, 933, 1124, 152,
+            0, 565, 890, 120);
+
+        ctx.beginPath(); ctx.moveTo(910, 12); ctx.lineTo(910, outputCanvas.height - 12); ctx.stroke(); // vertical
+
+        let barcodeSizeX = 940,
+            barcodeSizeY = 280;
+
+        ctx.drawImage(image,   // Unzustellbarkeit
+            1964, 1422, barcodeSizeX, 70,
+            930, 15, barcodeSizeX, 70);
+
+        ctx.drawImage(image,   // Leitcode/Routingcode
+            2070, 1634, barcodeSizeX, barcodeSizeY,
+            930, 100, barcodeSizeX, barcodeSizeY);
+        ctx.drawImage(image,   // Identcode/Sendungsnummer
+            2070, 2048, barcodeSizeX, barcodeSizeY,
+            930, 404, barcodeSizeX, barcodeSizeY);
+    }
+
 }
