@@ -88,6 +88,12 @@ function readFile() {
                     2763, 215, scSize, scSize,
                     594, 95, scSize, scSize)
 
+                ctx.rotate(-Math.PI / 2);
+                ctx.drawImage($image,   // Sicherheitscode Text
+                    3075, 240, 20, 190,
+                    -395, 647, -20, 190);
+                ctx.rotate(Math.PI / 2);
+
                 ctx.drawImage($image,   // Sendungsdaten
                     1964, 933, 1124, 152,
                     0, 565, 890, 120)
