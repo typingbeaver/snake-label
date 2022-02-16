@@ -1,9 +1,14 @@
-const debug = false;
+import { PDFDocument } from 'pdf-lib';
+const download = require("downloadjs");
 
+const debug = false;
 const viewImg = document.getElementById('view')
-const { PDFDocument, StandardFonts, rgb } = PDFLib
 let labelArrayBuffer = null
 let label;
+
+convertLabel.addEventListener("click", readFile, false);
+downloadLabel.addEventListener("click", saveLabel, false);
+downloadLabelIMG.addEventListener("click", savePNG, false);
 
 function savePNG() {
     download(labelArrayBuffer, document.getElementById('pdfFile').files[0].name.replace('.pdf', '') + "-Label.png", "image/png")

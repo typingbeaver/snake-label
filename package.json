@@ -1,0 +1,31 @@
+{
+  "name": "snake-label",
+  "version": "0.0.1",
+  "description": "Converts large format shipping labels to 62mm `snake_labels` for label printers.",
+  "browser": "index.html",
+  "scripts": {
+    "dev": "mix",
+    "watch": "mix watch",
+    "hot": "mix watch --hot",
+    "prod": "mix --production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/typingbeaver/snake-label.git"
+  },
+  "keywords": [],
+  "author": "Niclas Bartsch",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/typingbeaver/snake-label/issues"
+  },
+  "homepage": "https://github.com/typingbeaver/snake-label#readme",
+  "dependencies": {
+    "downloadjs": "^1.4.7",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^2.12.313"
+  },
+  "devDependencies": {
+    "laravel-mix": "^6.0.42"
+  }
+}
