@@ -17,6 +17,7 @@ Converts large format shipping labels to 62mm `snake_labels` for label printers.
 ## ToDos
 - _npm package & JS bundle (PDF.js needs version upgrade, missing in bundle)_
 - page styling
+- multi-file processing
 - more labels...
 - cli / electron app
 
