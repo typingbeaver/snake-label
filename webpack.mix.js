@@ -1,7 +1,11 @@
 // webpack.mix.js
-let mix = require('laravel-mix');
+const mix = require('laravel-mix');
+const fs = require('fs-extra')
 
-mix.setPublicPath('dist')
+mix.setPublicPath('dist');
 mix.js('src/crop.js', 'app.js')
-//    .extract('pdfjs-dist/build/pdf.worker.js')
    .extract()
+   .after(() => {
+      fs.copySync('node_modules/pdfjs-dist/build/pdf.worker.min.js',
+         'dist/pdf.worker.min.js')
+   });

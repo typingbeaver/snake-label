@@ -1,4 +1,6 @@
 import { PDFDocument } from 'pdf-lib';
+import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist';
+GlobalWorkerOptions.workerSrc = './dist/pdf.worker.min.js';
 const download = require("downloadjs");
 
 const debug = false;
@@ -40,65 +42,73 @@ async function saveLabel() {
 function readFile() {
     label = getLabelType();
     const reader = new FileReader()
-    console.log('reading file')
-    reader.onload = async function (e) {
-        const loadingTask = PDFJS.getDocument(reader.result)
-        let canvas, viewPort
-        loadingTask.promise.then(doc => {
-            console.log('doc=', doc)
-            return doc.getPage(1)
-        })
-            .then((page) => {
-                canvas = document.createElement('canvas'), viewPort = page.getViewport(4, 90)
-                canvas.width = viewPort.width
-                canvas.height = viewPort.height
-                return page.render({
-                    canvasContext: canvas.getContext('2d'),
-                    viewport: viewPort
-                }).then(_ => viewPort)
-            })
-            .then(async viewPort => {
-                let image = new Image()
-                let p = new Promise(r => image.onload = r)
-                image.src = canvas.toDataURL()
-                await p
-                await new Promise(r => setTimeout(r, 1e2)) // small delay helps
-
-                let outputCanvas = document.createElement('canvas'),
-                    ctx = outputCanvas.getContext('2d')
-                outputCanvas.width = label.width  // 12px = 1mm
-                outputCanvas.height = 696   // 59mm print width for QL-Printers
-
-                if (debug) {
-                    ctx.fillStyle = 'lightgreen'    // background
-                    ctx.fillRect(0, 0, outputCanvas.width, outputCanvas.height)
-                    ctx.fillStyle = 'pink'  // 1mm "safety zone" top/bottom
-                    ctx.fillRect(0, 0, outputCanvas.width, 12)
-                    ctx.fillRect(0, outputCanvas.height - 12, outputCanvas.width, outputCanvas.height)
-                } else {
-                    ctx.fillStyle = 'white'
-                    ctx.fillRect(0, 0, outputCanvas.width, outputCanvas.height)
-                }
-                ctx.strokeStyle = 'black'
-                ctx.lineWidth = 2
-
-                label.crop(outputCanvas, ctx, image)
-
-                viewImg.src = outputCanvas.toDataURL()
-                viewImg.hidden = true
-                downloadLabel.disabled = downloadLabelIMG.disabled = true
-                outputCanvas.toBlob((blob) => {
-                    const reader = new FileReader()
-                    reader.addEventListener('loadend', () => {
-                        labelArrayBuffer = reader.result
-                        viewImg.hidden = false
-                        downloadLabel.disabled = downloadLabelIMG.disabled = false
-                    })
-                    reader.readAsArrayBuffer(blob)
-                }, 'image/png')
-            })
-    }
+    console.log('Reading file.')
     reader.readAsArrayBuffer(document.getElementById('pdfFile').files[0])
+
+    reader.onload = async (e) => {
+        // read PDF
+        const pdf = await getDocument(reader.result).promise;
+        console.log('PDF loaded.', pdf);
+
+        // get page
+        const page = await pdf.getPage(1);
+
+        // render page on canvas
+        const canvas = document.createElement('canvas'),
+            viewport = page.getViewport({
+                scale: 4,
+                rotation: 90
+            });
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        await page.render({
+            canvasContext: canvas.getContext('2d'),
+            viewport: viewport
+        }).promise
+
+        // convert canvas to image
+        let image = new Image();
+        let p = new Promise(r => image.onload = r);
+        image.src = canvas.toDataURL();
+        await p;
+
+        await new Promise(r => setTimeout(r, 1e2)); // small delay helps
+
+        // generate output canvas
+        let outputCanvas = document.createElement('canvas'), ctx = outputCanvas.getContext('2d');
+        outputCanvas.width = label.width; // 12px = 1mm
+        outputCanvas.height = 696; // 59mm print width for QL-Printers
+
+        if (debug) {
+            ctx.fillStyle = 'lightgreen'; // background
+            ctx.fillRect(0, 0, outputCanvas.width, outputCanvas.height);
+            ctx.fillStyle = 'pink'; // 1mm "safety zone" top/bottom
+            ctx.fillRect(0, 0, outputCanvas.width, 12);
+            ctx.fillRect(0, outputCanvas.height - 12, outputCanvas.width, outputCanvas.height);
+        } else {
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, outputCanvas.width, outputCanvas.height);
+        }
+        ctx.strokeStyle = 'black';
+        ctx.lineWidth = 2;
+
+        // crop label
+        label.crop(outputCanvas, ctx, image);
+
+        // show label
+        viewImg.src = outputCanvas.toDataURL();
+        viewImg.hidden = true;
+        downloadLabel.disabled = downloadLabelIMG.disabled = true;
+        outputCanvas.toBlob((blob) => {
+            const reader = new FileReader();
+            reader.addEventListener('loadend', () => {
+                labelArrayBuffer = reader.result;
+                viewImg.hidden = false;
+                downloadLabel.disabled = downloadLabelIMG.disabled = false;
+            });
+            reader.readAsArrayBuffer(blob);
+        }, 'image/png');
+    };
 }
 
 function getLabelType() {
