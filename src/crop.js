@@ -1,49 +1,58 @@
 import { PDFDocument } from 'pdf-lib';
 import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist';
 GlobalWorkerOptions.workerSrc = './dist/pdf.worker.min.js';
-const download = require("downloadjs");
+const download = require('downloadjs');
 
 const debug = false;
-const viewImg = document.getElementById('view')
-let labelArrayBuffer = null
-let label;
+console.log('Application loaded. debug =', debug);
 
-convertLabel.addEventListener("click", readFile, false);
-downloadLabel.addEventListener("click", saveLabel, false);
-downloadLabelIMG.addEventListener("click", savePNG, false);
+const viewImg = document.getElementById('view');
+let label,
+    labelArrayBuffer;
+
+convertLabel.addEventListener('click', readFile, false);
+downloadLabel.addEventListener('click', saveLabel, false);
+downloadLabelIMG.addEventListener('click', savePNG, false);
 
 function savePNG() {
-    download(labelArrayBuffer, document.getElementById('pdfFile').files[0].name.replace('.pdf', '') + "-Label.png", "image/png")
+    download(labelArrayBuffer, document.getElementById('file-input').files[0].name.replace('.pdf', '') + '-Label.png', 'image/png');
 }
 
 async function saveLabel() {
-    const pdfDoc = await PDFDocument.create()
+    const pdfBytes = await generatePDF();
+    download(pdfBytes, document.getElementById('file-input').files[0].name.replace('.pdf', '') + '-Label.pdf', 'application/pdf');
+}
+
+async function generatePDF() {
+    const pdfDoc = await PDFDocument.create();
+
     // size in 72dpi
     // page borders: ends 3mm, top/bottom 1.5mm
     const width = pxTo72Dpi(label.width) + mmTo72Dpi(6),
         height = mmTo72Dpi(62);
-    const page = pdfDoc.addPage([width, height])
+    const page = pdfDoc.addPage([width, height]);
 
-    const labelImage = await pdfDoc.embedPng(labelArrayBuffer)
+    const labelImage = await pdfDoc.embedPng(labelArrayBuffer);
     page.drawImage(labelImage, {
         x: mmTo72Dpi(3),
         y: mmTo72Dpi(1.5),
         width: width - mmTo72Dpi(6),
         height: height - mmTo72Dpi(3),
-    })
+    });
 
-    const pdfBytes = await pdfDoc.save()
-    download(pdfBytes, document.getElementById('pdfFile').files[0].name.replace('.pdf', '') + "-Label.pdf", "application/pdf")
+    return pdfDoc.save();
 
-    function mmTo72Dpi(length) { return length * 0.03937007874 * 72; }  // mm -> 72dpi
-    function pxTo72Dpi(pixels) { return pixels * 72 / 300. }    // 300dpi px -> 72dpi
+    // helper functions
+    function mmTo72Dpi(length) { return length * 0.03937007874 * 72; }; // mm -> 72dpi
+    function pxTo72Dpi(pixels) { return pixels * 72 / 300. };           // 300dpi px -> 72dpi
 }
 
 function readFile() {
     label = getLabelType();
-    const reader = new FileReader()
-    console.log('Reading file.')
-    reader.readAsArrayBuffer(document.getElementById('pdfFile').files[0])
+
+    const reader = new FileReader();
+    console.log('Reading file.');
+    reader.readAsArrayBuffer(document.getElementById('file-input').files[0]);
 
     reader.onload = async (e) => {
         // read PDF
@@ -64,25 +73,26 @@ function readFile() {
         await page.render({
             canvasContext: canvas.getContext('2d'),
             viewport: viewport
-        }).promise
+        }).promise;
 
         // convert canvas to image
-        let image = new Image();
-        let p = new Promise(r => image.onload = r);
+        const image = new Image();
+        const p = new Promise(r => image.onload = r);
         image.src = canvas.toDataURL();
         await p;
 
         await new Promise(r => setTimeout(r, 1e2)); // small delay helps
 
         // generate output canvas
-        let outputCanvas = document.createElement('canvas'), ctx = outputCanvas.getContext('2d');
+        const outputCanvas = document.createElement('canvas'),
+            ctx = outputCanvas.getContext('2d');
         outputCanvas.width = label.width; // 12px = 1mm
         outputCanvas.height = 696; // 59mm print width for QL-Printers
 
         if (debug) {
             ctx.fillStyle = 'lightgreen'; // background
             ctx.fillRect(0, 0, outputCanvas.width, outputCanvas.height);
-            ctx.fillStyle = 'pink'; // 1mm "safety zone" top/bottom
+            ctx.fillStyle = 'pink'; // 1mm 'safety zone' top/bottom
             ctx.fillRect(0, 0, outputCanvas.width, 12);
             ctx.fillRect(0, outputCanvas.height - 12, outputCanvas.width, outputCanvas.height);
         } else {
@@ -94,6 +104,7 @@ function readFile() {
 
         // crop label
         label.crop(outputCanvas, ctx, image);
+        console.log('Label cropped.');
 
         // show label
         viewImg.src = outputCanvas.toDataURL();
@@ -108,22 +119,21 @@ function readFile() {
             });
             reader.readAsArrayBuffer(blob);
         }, 'image/png');
+        console.log('Finished.');
     };
 }
 
 function getLabelType() {
     switch (document.getElementById('label-type').value) {
-        case "dhl-privat":
-            return dhlPrivat;
-
-        case "dhl-privat-international":
-            return dhlPrivatInternational;
-    }
+        case 'dhl-privat': return dhlPrivat;
+        case 'dhl-privat-international': return dhlPrivatInternational;
+        default: console.error("Unknown label type.");
+    };
 }
 
 const dhlPrivat = {
     width: 1606,
-    async crop(outputCanvas, ctx, image) {
+    crop(outputCanvas, ctx, image) {
         ctx.drawImage(image,   // Kopf
             1964, 108, 1124, 92,
             0, 12, 890, 73);
@@ -158,8 +168,7 @@ const dhlPrivat = {
             2198, 1940, barcodeSizeX, barcodeSizeY,
             930, 364, barcodeSizeX, barcodeSizeY);
     }
-
-}
+};
 
 const dhlPrivatInternational = {
     width: 1870,
@@ -191,11 +200,10 @@ const dhlPrivatInternational = {
             1964, 933, 1124, 152,
             0, 565, 890, 120);
 
-        ctx.beginPath(); ctx.moveTo(910, 12); ctx.lineTo(910, outputCanvas.height - 12); ctx.stroke(); // vertical
+        ctx.beginPath(); ctx.moveTo(910, 12); ctx.lineTo(910, outputCanvas.height - 12); ctx.stroke();
 
         let barcodeSizeX = 940,
             barcodeSizeY = 280;
-
         ctx.drawImage(image,   // Unzustellbarkeit
             1964, 1422, barcodeSizeX, 70,
             930, 15, barcodeSizeX, 70);
@@ -207,5 +215,4 @@ const dhlPrivatInternational = {
             2070, 2048, barcodeSizeX, barcodeSizeY,
             930, 404, barcodeSizeX, barcodeSizeY);
     }
-
-}
+};
