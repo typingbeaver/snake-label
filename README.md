@@ -28,4 +28,4 @@ Converts large format shipping labels to 62mm `snake_labels` for label printers.
 - [PDF.js](https://github.com/mozilla/pdf.js) (c) Mozilla Foundation | Apache-2.0 License
 - [downloadjs](https://github.com/rndme/download) (c) dandavis | MIT License
 
-Made possible by [@catSIXe](https://github.com/catSIXe). :octocat:
+Made possible by [@catSIXe](https://github.com/cheetahdotcat). :octocat:
