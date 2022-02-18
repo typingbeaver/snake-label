@@ -4,6 +4,7 @@ Converts large format shipping labels to 62mm `snake_labels` for label printers.
 ## Currently available labels:
 - DHL National (Privatkunden) to 62x142mm
 - DHL International (Privatkunden) to 62x164mm
+
 (Note: Zusatzleistungen and Warnings are not included in these labels (yet)!)
 - Hermes Privatservice (V 1.0.2) to 62x144mm
 
