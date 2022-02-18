@@ -2,6 +2,7 @@ export default function (labelType) {
     switch (labelType) {
         case 'dhl-privat': return dhlPrivat;
         case 'dhl-privat-international': return dhlPrivatInternational;
+        case 'hermes-privat-v102': return hermesPrivatV102;
         default: console.error("Unknown label type.");
     };
 }
@@ -111,3 +112,70 @@ const dhlPrivatInternational = {
             930, 404, barcodeSizeX, barcodeSizeY);
     }
 };
+
+const hermesPrivatV102 = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 0
+    },
+    width: 1630,    // 138mm
+    crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,    // Titel
+            185, 180, 915, 45,
+            20, 20, 915, 45);
+
+        ctx.drawImage(image,    // Zahlungscode
+            220, 1115, 750, 350,
+            40, 80, 750, 350);
+
+        ctx.drawImage(image,    // Logo
+            1625, 165, 485, 80,
+            40, 460, 364, 60);
+        ctx.drawImage(image,    // Sendungs-ID
+            1100, 280, 350, 95,
+            130, 540, 276, 75);
+        // ctx.drawImage(image,    // 'WE DO!' Logo
+        //     1889, 479, 206, 310,
+        //     415, 460, 103, 155);
+
+        ctx.rotate(Math.PI / 2)
+        ctx.drawImage(image,    // PaketShop-Hinweis
+            2140, 350, 70, 1020,
+            650, -20, 35, -510);
+        ctx.rotate(-Math.PI / 2)
+
+        ctx.drawImage(image,    // Absender
+            1100, 425, 560, 260,
+            800, 100, 420, 190);
+
+
+        ctx.drawImage(image,    // Empfänger Code
+            780, 870, 250, 220,
+            570, 370, 188, 165);
+        ctx.drawImage(image,    // Empfänger
+            1100, 865, 560, 260,
+            800, 370, 420, 190);
+        ctx.drawImage(image,    // Empfänger Land
+            1100, 1245, 560, 40,
+            800, 600, 420, 30);
+
+        ctx.drawImage(image,    // Zusatz EU
+            1850, 1325, 230, 140,
+            650, 580, 105, 70);
+        ctx.drawImage(image,    // Zusatz Sperrig (P)
+            1640, 1330, 110, 140,
+            570, 580, 55, 70);
+
+        ctx.drawImage(image,    // Sendungsnummer
+            210, 370, 370, 640,
+            1250, 28, 370, 640);
+
+        // border
+        ctx.lineWidth = 4;
+        ctx.beginPath(); ctx.moveTo(0, 2); ctx.lineTo(this.width, 2); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(0, outputCanvas.height - 2); ctx.lineTo(this.width, outputCanvas.height - 2); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(2, 4); ctx.lineTo(2, outputCanvas.height - 4); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(this.width - 2, 4); ctx.lineTo(this.width - 2, outputCanvas.height - 4); ctx.stroke();
+    }
+}
