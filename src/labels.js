@@ -2,6 +2,7 @@ export default function (labelType) {
     switch (labelType) {
         case 'dhl-privat': return dhlPrivat;
         case 'dhl-privat-international': return dhlPrivatInternational;
+        case 'dhl-retoure': return dhlRetoure;
         case 'hermes-privat-v102': return hermesPrivatV102;
         default: console.error("Unknown label type.");
     };
@@ -110,6 +111,52 @@ const dhlPrivatInternational = {
         ctx.drawImage(image,   // Identcode/Sendungsnummer
             2068, 2048, barcodeSizeX, barcodeSizeY,
             930, 404, barcodeSizeX, barcodeSizeY);
+    }
+};
+
+const dhlRetoure = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 90
+    },
+    width: 1630,    // 138mm
+    crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,   // Kopf "DHL Retoure"
+            2020, 85, 500, 70,
+            0, 12, 450, 63);
+        ctx.drawImage(image,   // Kopf Logo
+            2780, 85, 250, 70,
+            425, 12, 225, 63);
+
+        ctx.drawImage(image,   // From
+            2020, 162, 720, 200,
+            0, 90, 648, 180);
+
+        ctx.drawImage(image,   // To
+            2020, 435, 720, 270,
+            0, 280, 648, 243);
+
+        ctx.beginPath(); ctx.moveTo(0, 580); ctx.lineTo(650, 580); ctx.stroke();
+
+        ctx.drawImage(image,   // Sendungsdaten
+            2020, 745, 720, 110,
+            0, 590, 648, 99);
+
+        ctx.beginPath(); ctx.moveTo(665, 12); ctx.lineTo(665, outputCanvas.height - 12); ctx.stroke();
+
+        let barcodeSizeX = 950,
+            barcodeSizeY = 240;
+        ctx.drawImage(image,   // Auftragsnummer
+            2030, 1230, barcodeSizeX, 120,
+            680, 15, barcodeSizeX, 120);
+
+        ctx.drawImage(image,   // Leitcode/Routingcode
+            2030, 1460, barcodeSizeX, barcodeSizeY,
+            680, 180, barcodeSizeX, barcodeSizeY);
+        ctx.drawImage(image,   // Identcode/Sendungsnummer
+            2030, 1810, barcodeSizeX, barcodeSizeY,
+            680, 440, barcodeSizeX, barcodeSizeY);
     }
 };
 
