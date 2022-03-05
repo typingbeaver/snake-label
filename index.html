@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>snake_label</title>
+
+    <script src="dist/manifest.js" defer></script>
+    <script src="dist/vendor.js" defer></script>
+    <script src="dist/app.js" defer></script>
 </head>
 
 <body style="display: flex; flex-direction: column; align-items: center;">
@@ -25,7 +29,7 @@
                 <label for="label-type"><strong>Paketlabel</strong></label>
                 <select id="label-type">
                     <option value="dhl-privat">DHL Paket (Privatkunden)</option>
-                    <option value="dhl-privat-international">DHL International (Privatkunden)</option>
+                    <option value="dhl-privat-international">DHL International EU [DHL native] (Privatkunden)</option>
                     <option value="dhl-retoure">DHL Retoure</option>
                     <option value="hermes-privat-v102">Hermes Privatservice (V 1.0.2)</option>
                 </select>
@@ -41,10 +45,6 @@
         <button id="downloadLabel" disabled>Download Label-PDF</button>
         <button id="downloadLabelIMG" disabled>Download Label as PNG Image</button>
     </div>
-
-    <script src="dist/manifest.js"></script>
-    <script src="dist/vendor.js"></script>
-    <script src="dist/app.js"></script>
 </body>
 
 </html>
