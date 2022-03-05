@@ -119,22 +119,22 @@ const hermesPrivatV102 = {
         page: 1,
         rotation: 0
     },
-    width: 1630,    // 138mm
+    width: 1701,    // 144mm
     crop(outputCanvas, ctx, image) {
         ctx.drawImage(image,    // Titel
             185, 180, 915, 45,
             20, 20, 915, 45);
 
         ctx.drawImage(image,    // Zahlungscode
-            220, 1115, 750, 350,
-            40, 80, 750, 350);
+            200, 1115, 770, 350,
+            20, 80, 770, 350);
 
         ctx.drawImage(image,    // Logo
             1625, 165, 485, 80,
             40, 460, 364, 60);
         ctx.drawImage(image,    // Sendungs-ID
             1100, 280, 350, 95,
-            130, 540, 276, 75);
+            130, 540, 313, 85);
         // ctx.drawImage(image,    // 'WE DO!' Logo
         //     1889, 479, 206, 310,
         //     415, 460, 103, 155);
@@ -146,30 +146,30 @@ const hermesPrivatV102 = {
         ctx.rotate(-Math.PI / 2)
 
         ctx.drawImage(image,    // Absender
-            1100, 425, 560, 260,
-            800, 100, 420, 190);
+            1100, 425, 580, 260,
+            810, 100, 493, 221);
 
 
         ctx.drawImage(image,    // Empfänger Code
             780, 870, 250, 220,
-            570, 370, 188, 165);
+            560, 370, 225, 198);
         ctx.drawImage(image,    // Empfänger
-            1100, 865, 560, 260,
-            800, 370, 420, 190);
+            1100, 865, 580, 260,
+            810, 370, 493, 221);
         ctx.drawImage(image,    // Empfänger Land
-            1100, 1245, 560, 40,
-            800, 600, 420, 30);
+            1100, 1245, 580, 40,
+            810, 630, 493, 34);
 
         ctx.drawImage(image,    // Zusatz EU
             1850, 1325, 230, 140,
-            650, 580, 105, 70);
+            645, 600, 138, 84);
         ctx.drawImage(image,    // Zusatz Sperrig (P)
             1640, 1330, 110, 140,
-            570, 580, 55, 70);
+            560, 600, 66, 84);
 
         ctx.drawImage(image,    // Sendungsnummer
             210, 370, 370, 640,
-            1250, 28, 370, 640);
+            1320, 28, 370, 640);
 
         // border
         ctx.lineWidth = 4;
