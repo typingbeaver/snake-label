@@ -22,7 +22,7 @@ Converts large format shipping labels to 62mm `snake_labels` for label printers.
 - page styling
 - multi-file processing
 - more labels...
-- cli / electron app
+- cli / ~~Electron~~ Tauri app
 
 ---
 ## Dependencies & Licenses
