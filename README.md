@@ -1,7 +1,16 @@
-# `snake_label`
+# [`snake_label`](https://snake-label.de)
 Converts large format shipping labels to 62mm `snake_labels` for label printers.
 
-Currently available labels:
+## Features and benefits
+- **smaller and handier**: sticky labels instead of giant plain paper pages
+- **as short as possible**: more labels for your money!
+- **sharp 2D-/barcodes**: for best scanability
+- **without backend**: crops completely locally via JS (keep your address safe!)
+- optimized for 300dpi
+- optimised PNGs for direct printing via [brother_ql](https://github.com/pklaus/brother_ql)
+
+
+Currently available labels
 ---------------------------
 
 ### DHL
@@ -36,14 +45,6 @@ International returns are most probably better on a real paper sheet/A5 Label.
 
 ![Sample Image](img/samples/hermes_privat.png)
 
-
-## Features and benefits
-- **smaller and handier**: sticky labels instead of giant plain paper pages
-- **as short as possible**: more labels for your money!
-- **sharp 2D-/barcodes**: for best scanability
-- **without backend**: crops completely locally via JS (keep your address safe!)
-- optimized for 300dpi
-- optimised PNGs for direct printing via [brother_ql](https://github.com/pklaus/brother_ql)
 
 ## ToDos
 - page styling
