@@ -111,14 +111,12 @@ function readFile() {
 
         // show label
         viewImg.src = outputCanvas.toDataURL();
-        viewImg.hidden = true;
-        downloadLabel.disabled = downloadLabelIMG.disabled = true;
+        viewImg.hidden = buttons.hidden = true;
         outputCanvas.toBlob((blob) => {
             const reader = new FileReader();
             reader.addEventListener('loadend', () => {
                 labelArrayBuffer = reader.result;
-                viewImg.hidden = false;
-                downloadLabel.disabled = downloadLabelIMG.disabled = false;
+                viewImg.hidden = buttons.hidden = false;
             });
             reader.readAsArrayBuffer(blob);
         }, 'image/png');

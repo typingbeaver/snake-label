@@ -13,37 +13,34 @@
     <script src="dist/app.js" defer></script>
 </head>
 
-<body style="display: flex; flex-direction: column; align-items: center;">
+<body style="display: flex; flex-direction: column; align-items: center; font-family: 'Fira Mono', monospace;">
     <h1>snake_label</h1>
-    <p style="font-family: monospace;">
-        made by <a href="https://github.com/typingbeaver">@typingbeaver</a> and <a
-            href="https://github.com/cheetahdotcat">@catSIXe</a>
-    </p>
-    <div style="display: flex; flex-direction: column; gap: 1em;">
-        <div>
-            <p>DHL Paket (Privatkunden): 62mm x 142mm</p>
-            <p>DHL Paket International EU [DHL native countries, eg. NL] (Privatkunden): 62mm x 164mm</p>
-            <p>DHL Retoure: 62mm x 144mm</p>
-            <p>Hermes Privatservice (V 1.0.2): 62 x 150mm</p>
-        </div>
-        <div>
-            <div style="margin-bottom: 1em;">
-                <label for="label-type"><strong>Paketlabel</strong></label>
-                <select id="label-type">
-                    <option value="dhl-privat">DHL Paket (Privatkunden)</option>
-                    <option value="dhl-privat-international">DHL International EU [DHL native] (Privatkunden)</option>
-                    <option value="dhl-retoure">DHL Retoure</option>
-                    <option value="hermes-privat-v102">Hermes Privatservice (V 1.0.2)</option>
-                </select>
-            </div>
-            <input type="file" id="file-input" accept="application/pdf">
-            <button id="convertLabel">Convert to Label-PDF</button>
-        </div>
+    <div style="margin-bottom: 2rem;">
+        made by <a href="https://github.com/typingbeaver">@typingbeaver</a> and
+        <a href="https://github.com/cheetahdotcat">@catSIXe</a>
+    </div>
+    <div style="margin-bottom: 1em;">
+        <label for="label-type"><strong>Paketlabel</strong></label>
+        <select id="label-type">
+            <optgroup label="dhl">
+                <option value="dhl-privat">dhl_paket_privat | 62x142mm</option>
+                <option value="dhl-privat-international">dhl_international_eu_privat [DHL native] | 62x164mm
+                </option>
+                <option value="dhl-retoure">dhl_retoure | 62x144mm</option>
+            </optgroup>
+            <optgroup label="hermes">
+                <option value="hermes-privat-v102">hermes_privat (V 1.0.2) | 62x150mm</option>
+            </optgroup>
+        </select>
+    </div>
+    <div>
+        <input type="file" id="file-input" accept="application/pdf">
+        <button id="convertLabel">Convert to Label-PDF</button>
     </div>
     <div>
         <img id="view" style="padding: 12px 36px; border: 1px solid black; margin-top: 1em;" hidden />
     </div>
-    <div style="margin-top: 1em;">
+    <div id="buttons" style="margin-top: 1em;" hidden>
         <button id="downloadLabel" disabled>Download Label-PDF</button>
         <button id="downloadLabelIMG" disabled>Download Label as PNG Image</button>
     </div>
