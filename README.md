@@ -1,5 +1,5 @@
 # [`snake_label`](https://snake-label.de)
-Converts large format shipping labels to 62mm `snake_labels` for label printers.
+Converts large format shipping labels to 62mm `snake_labels` for label printers e. g. Brother QL printers.
 
 ## Features and benefits
 - **smaller and handier**: sticky labels instead of giant plain paper pages
@@ -44,6 +44,11 @@ International returns are most probably better on a real paper sheet/A5 Label.
 - **Size:** 62x150mm
 
 ![Sample Image](img/samples/hermes_privat.png)
+
+### Seller Returns
+
+#### `adidas_retoure`
+- **Size:** 62x115mm
 
 
 ## ToDos

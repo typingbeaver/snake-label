@@ -4,6 +4,7 @@ export default function (labelType) {
         case 'dhl-privat-international': return dhlPrivatInternational;
         case 'dhl-retoure': return dhlRetoure;
         case 'hermes-privat-v102': return hermesPrivatV102;
+        case 'adidas': return adidasRetoure;
         default: console.error("Unknown label type.");
     };
 }
@@ -24,7 +25,7 @@ const dhlPrivat = {
         page: 1,
         rotation: 90
     },
-    width: 1606,    // 138mm
+    width: 1606,    // 136mm (=> 142mm)
     crop(outputCanvas, ctx, image) {
         ctx.drawImage(image,   // Kopf
             1964, 108, 1124, 92,
@@ -68,7 +69,7 @@ const dhlPrivatInternational = {
         page: 1,
         rotation: 90
     },
-    width: 1866,    // 158mm
+    width: 1866,    // 158mm (=> 164mm)
     crop(outputCanvas, ctx, image) {
         ctx.drawImage(image,   // Kopf
             1964, 108, 1124, 92,
@@ -120,7 +121,7 @@ const dhlRetoure = {
         page: 1,
         rotation: 90
     },
-    width: 1630,    // 138mm
+    width: 1630,    // 138mm (=> 144mm)
     crop(outputCanvas, ctx, image) {
         ctx.drawImage(image,   // Kopf "DHL Retoure"
             2020, 85, 500, 70,
@@ -166,7 +167,7 @@ const hermesPrivatV102 = {
         page: 1,
         rotation: 0
     },
-    width: 1701,    // 144mm
+    width: 1701,    // 144mm  (=> 150mm)
     crop(outputCanvas, ctx, image) {
         ctx.drawImage(image,    // Titel
             185, 180, 915, 45,
@@ -224,5 +225,69 @@ const hermesPrivatV102 = {
         ctx.beginPath(); ctx.moveTo(0, outputCanvas.height - 2); ctx.lineTo(this.width, outputCanvas.height - 2); ctx.stroke();
         ctx.beginPath(); ctx.moveTo(2, 4); ctx.lineTo(2, outputCanvas.height - 4); ctx.stroke();
         ctx.beginPath(); ctx.moveTo(this.width - 2, 4); ctx.lineTo(this.width - 2, outputCanvas.height - 4); ctx.stroke();
+    }
+};
+
+const adidasRetoure = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 0
+    },
+    width: 1287,    // 109mm (=> 115mm)
+    crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,   // Kopf "DHL Retoure"
+            354, 46, 824, 54,
+            0, 12, 648, 42);
+
+        ctx.beginPath(); ctx.moveTo(0, 70); ctx.lineTo(650, 70); ctx.stroke();
+
+        ctx.drawImage(image,   // From
+            86, 110, 648, 190,
+            0, 90, 648, 190);
+
+        ctx.drawImage(image,   // To
+            86, 302, 520, 262,
+            0, 290, 520, 262);
+        ctx.drawImage(image,   // rechte Klammer
+            778, 302, 128, 262,
+            520, 290, 128, 262);
+
+        ctx.beginPath(); ctx.moveTo(0, 580); ctx.lineTo(650, 580); ctx.stroke();
+
+        ctx.drawImage(image,   // Sendungsdaten
+            96, 664, 1010, 140,
+            0, 590, 648, 90);
+
+        ctx.beginPath(); ctx.moveTo(665, 12); ctx.lineTo(665, outputCanvas.height - 12); ctx.stroke();
+
+        let barcodeSizeX = 600,
+            barcodeSizeY = 240;
+        ctx.drawImage(image,   // Barcode Returennummer
+            1370, 600, barcodeSizeX, 80,
+            687, 15, barcodeSizeX, 80);
+        ctx.drawImage(image,   // Retourennummer
+            1400, 800, 420, 54,
+            720, 100, 311, 40);
+
+        ctx.drawImage(image,   // Leitcode/Routingcode
+            150, 946, barcodeSizeX, barcodeSizeY,
+            687, 180, barcodeSizeX, barcodeSizeY);
+        ctx.drawImage(image,   // Identcode/Sendungsnummer
+            150, 1320, barcodeSizeX, barcodeSizeY,
+            687, 440, barcodeSizeX, barcodeSizeY);
+}
+};
+
+const amazonRetoureDhl = {
+    file: {
+        type: 'gif',
+        rotation: 90
+    },
+    width: 1701,
+    crop(outputCanvas, ctx, image) {
+
+        ctx.drawImage(image, 0, 0)
+
     }
 }
