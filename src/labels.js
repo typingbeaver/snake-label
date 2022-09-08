@@ -42,8 +42,8 @@ const dhlPrivat = {
 
         ctx.rotate(-Math.PI / 2);
         ctx.drawImage(image,   // Sicherheitscode Text
-            3075, 240, 20, 190,
-            -395, 647, -20, 190);
+            3075, 244, 20, 194,
+            -395, 645, -20, 194);
         ctx.rotate(Math.PI / 2);
 
         ctx.drawImage(image,   // Sendungsdaten
@@ -86,8 +86,8 @@ const dhlPrivatInternational = {
 
         ctx.rotate(-Math.PI / 2);
         ctx.drawImage(image,   // Sicherheitscode Text
-            3075, 240, 20, 190,
-            -395, 647, -20, 190);
+            3075, 244, 20, 194,
+            -395, 645, -20, 194);
         ctx.rotate(Math.PI / 2);
 
         ctx.drawImage(image,   // Telefonnummer
