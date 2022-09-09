@@ -47,7 +47,10 @@ International returns are most probably better on a real paper sheet/A5 Label.
 
 ### Seller Returns
 
-#### `adidas_retoure`
+#### `adidas_retoure [dhl]`
+- **Size:** 62x115mm
+
+#### `mediamarkt_saturn_retoure [dhl]`
 - **Size:** 62x115mm
 
 

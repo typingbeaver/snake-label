@@ -5,6 +5,7 @@ export default function (labelType) {
         case 'dhl-retoure': return dhlRetoure;
         case 'hermes-privat-v102': return hermesPrivatV102;
         case 'adidas': return adidasRetoure;
+        case 'mediamarkt-saturn': return mediamarktSaturnRetoure;
         default: console.error("Unknown label type.");
     };
 }
@@ -279,15 +280,34 @@ const adidasRetoure = {
 }
 };
 
-const amazonRetoureDhl = {
+const mediamarktSaturnRetoure = {
     file: {
-        type: 'gif',
-        rotation: 90
+        type: 'pdf',
+        page: 3,
+        rotation: 0
     },
-    width: 1701,
+    width: 1287,    // 109mm (=> 115mm)
     crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,   // Kopf "DHL Retoure"
+            226, 149, 90, 1053,
+            0, 0, 60, 696);
 
-        ctx.drawImage(image, 0, 0)
+        ctx.drawImage(image,   // Von / An
+            340, 149, 405, 1053,
+            60, 0, 268, 696);
 
+        ctx.drawImage(image,   // Sendungsdaten
+            857, 149, 190, 1053,
+            328, 0, 126, 696);
+
+        ctx.beginPath(); ctx.moveTo(454, 0); ctx.lineTo(454, 696); ctx.stroke();
+
+        ctx.drawImage(image,   // Auftragsnummer
+            1102, 376, 180, 600,
+            470, 48, 180, 600);
+
+        ctx.drawImage(image,   // Barcodes
+            1314, 328, 610, 696,
+            677, 0, 610, 696);
     }
-}
+};
