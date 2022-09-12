@@ -26,7 +26,7 @@ const dhlPrivat = {
         page: 1,
         rotation: 90
     },
-    width: 1606,    // 136mm (=> 142mm)
+    width: 1642,    // 139mm (=> 145mm)
     crop(outputCanvas, ctx, image) {
         ctx.drawImage(image,   // Kopf
             1964, 108, 1124, 92,
@@ -54,13 +54,13 @@ const dhlPrivat = {
         ctx.beginPath(); ctx.moveTo(910, 12); ctx.lineTo(910, outputCanvas.height - 12); ctx.stroke();
 
         let barcodeSizeX = 676,
-            barcodeSizeY = 320;
+            barcodeSizeY = 300;
         ctx.drawImage(image,   // Leitcode/Routingcode
-            2198, 1526, barcodeSizeX, barcodeSizeY,
-            930, 20, barcodeSizeX, barcodeSizeY);
+            2198, 1546, barcodeSizeX, barcodeSizeY,
+            950, 30, barcodeSizeX, barcodeSizeY);
         ctx.drawImage(image,   // Identcode/Sendungsnummer
-            2198, 1940, barcodeSizeX, barcodeSizeY,
-            930, 364, barcodeSizeX, barcodeSizeY);
+            2198, 1960, barcodeSizeX, barcodeSizeY,
+            950, 380, barcodeSizeX, barcodeSizeY);
     }
 };
 
@@ -70,7 +70,7 @@ const dhlPrivatInternational = {
         page: 1,
         rotation: 90
     },
-    width: 1866,    // 158mm (=> 164mm)
+    width: 1878,    // 159mm (=> 165mm)
     crop(outputCanvas, ctx, image) {
         ctx.drawImage(image,   // Kopf
             1964, 108, 1124, 92,
@@ -101,18 +101,18 @@ const dhlPrivatInternational = {
 
         ctx.beginPath(); ctx.moveTo(910, 12); ctx.lineTo(910, outputCanvas.height - 12); ctx.stroke();
 
-        let barcodeSizeX = 936,
-            barcodeSizeY = 280;
+        let barcodeSizeX = 940,
+            barcodeSizeY = 270;
         ctx.drawImage(image,   // Unzustellbarkeit
             1964, 1422, barcodeSizeX, 70,
             930, 15, barcodeSizeX, 70);
 
         ctx.drawImage(image,   // Leitcode/Routingcode
-            2068, 1634, barcodeSizeX, barcodeSizeY,
-            930, 100, barcodeSizeX, barcodeSizeY);
+            2066, 1644, barcodeSizeX, barcodeSizeY,
+            936, 110, barcodeSizeX, barcodeSizeY);
         ctx.drawImage(image,   // Identcode/Sendungsnummer
-            2068, 2048, barcodeSizeX, barcodeSizeY,
-            930, 404, barcodeSizeX, barcodeSizeY);
+            2066, 2058, barcodeSizeX, barcodeSizeY,
+            936, 416, barcodeSizeX, barcodeSizeY);
     }
 };
 
@@ -122,7 +122,7 @@ const dhlRetoure = {
         page: 1,
         rotation: 90
     },
-    width: 1630,    // 138mm (=> 144mm)
+    width: 1642,    // 139mm (=> 145mm)
     crop(outputCanvas, ctx, image) {
         ctx.drawImage(image,   // Kopf "DHL Retoure"
             2020, 85, 500, 70,
@@ -151,14 +151,14 @@ const dhlRetoure = {
             barcodeSizeY = 240;
         ctx.drawImage(image,   // Auftragsnummer
             2030, 1230, barcodeSizeX, 120,
-            680, 15, barcodeSizeX, 120);
+            686, 15, barcodeSizeX, 120);
 
         ctx.drawImage(image,   // Leitcode/Routingcode
             2030, 1460, barcodeSizeX, barcodeSizeY,
-            680, 180, barcodeSizeX, barcodeSizeY);
+            686, 170, barcodeSizeX, barcodeSizeY);
         ctx.drawImage(image,   // Identcode/Sendungsnummer
             2030, 1810, barcodeSizeX, barcodeSizeY,
-            680, 440, barcodeSizeX, barcodeSizeY);
+            686, 445, barcodeSizeX, barcodeSizeY);
     }
 };
 

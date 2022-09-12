@@ -16,7 +16,7 @@ Currently available labels
 ### DHL
 
 #### `dhl_national_privat`
-- **Size:** 62x142mm
+- **Size:** 62x145mm
 - **Note:** Zusatzleistungen and Warnings are not included in these labels (yet?).
 
 _[no sampe image yet]_
@@ -25,14 +25,14 @@ _[no sampe image yet]_
 
 #### `dhl_international_eu_privat`
 [DHL native countries, eg. NL]
-- **Size:** 62x164mm
+- **Size:** 62x165mm
 - **Note:** *Zusatzleistungen and Warnings are not included in these labels (yet?).*
 
 _[no sampe image yet]_
 <!-- ![Sample Image]() -->
 
 #### `dhl_retoure` (Deutschland)
-- **Size:** 62x144mm
+- **Size:** 62x145mm
 
 International returns are most probably better on a real paper sheet/A5 Label.
 
