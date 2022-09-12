@@ -1,5 +1,6 @@
 {
     "name": "snake_label",
+    "short_name": "snake_label",
     "icons": [
         {
             "src": "/img/android-chrome-192x192.png",
