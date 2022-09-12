@@ -277,37 +277,50 @@ const adidasRetoure = {
         ctx.drawImage(image,   // Identcode/Sendungsnummer
             150, 1320, barcodeSizeX, barcodeSizeY,
             687, 440, barcodeSizeX, barcodeSizeY);
-}
+    }
 };
 
 const mediamarktSaturnRetoure = {
     file: {
         type: 'pdf',
         page: 3,
-        rotation: 0
+        rotation: 90
     },
-    width: 1287,    // 109mm (=> 115mm)
+    width: 1642,    // 139mm (=> 145mm)
     crop(outputCanvas, ctx, image) {
         ctx.drawImage(image,   // Kopf "DHL Retoure"
-            226, 149, 90, 1053,
-            0, 0, 60, 696);
+            2188, 243, 1010, 60,
+            0, 12, 900, 53);
+
+        ctx.beginPath(); ctx.moveTo(0, 75); ctx.lineTo(900, 75); ctx.stroke();
 
         ctx.drawImage(image,   // Von / An
-            340, 149, 405, 1053,
-            60, 0, 268, 696);
+            2197, 361, 150, 376,
+            0, 100, 150, 376);
+        ctx.drawImage(image,
+            2419, 361, 750, 376,
+            150, 100, 750, 376);
+
+        ctx.beginPath(); ctx.moveTo(0, 520); ctx.lineTo(900, 520); ctx.stroke();
 
         ctx.drawImage(image,   // Sendungsdaten
-            857, 149, 190, 1053,
-            328, 0, 126, 696);
+            2180, 875, 1010, 165,
+            0, 530, 900, 147);
 
-        ctx.beginPath(); ctx.moveTo(454, 0); ctx.lineTo(454, 696); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(920, 0); ctx.lineTo(920, 696); ctx.stroke();
+
+        let barcodeSizeX = 660,
+            barcodeSizeY = 240;
 
         ctx.drawImage(image,   // Auftragsnummer
-            1102, 376, 180, 600,
-            470, 48, 180, 600);
+            2492, 1181, 400, 100,
+            1095, 20, 400, 100);
 
-        ctx.drawImage(image,   // Barcodes
-            1314, 328, 610, 696,
-            677, 0, 610, 696);
+        ctx.drawImage(image,   // Leitcode/Routingcode
+            2362, 1360, barcodeSizeX, barcodeSizeY,
+            965, 180, barcodeSizeX, barcodeSizeY);
+        ctx.drawImage(image,   // Identcode/Sendungsnummer
+            2362, 1685, barcodeSizeX, barcodeSizeY,
+            965, 450, barcodeSizeX, barcodeSizeY);
     }
 };
