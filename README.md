@@ -1,4 +1,4 @@
-# [`snake_label`](https://snake-label.de)
+# [![`snake_label`](/img/snake_label_header.webp)](https://snake-label.de)
 Converts large format shipping labels to 62mm `snake_labels` for label printers e. g. Brother QL printers.
 
 ## Features and benefits
@@ -64,9 +64,14 @@ International returns are most probably better on a real paper sheet/A5 Label.
 ## Dependencies & Licenses
 `snake_label` is licensed under [GPL-3.0](LICENSE).
 
+Made possible by [@catSIXe](https://github.com/cheetahdotcat). :octocat:
+
+### Dependencies
 - [PDF-LIB](https://github.com/Hopding/pdf-lib) (c) Andrew Dillon | MIT License
 - [PDF.js](https://github.com/mozilla/pdf.js) (c) Mozilla Foundation | Apache-2.0 License
 - [downloadjs](https://github.com/rndme/download) (c) dandavis | MIT License
 - [laravel-mix](https://github.com/laravel-mix/laravel-mix) (c) Jeffrey Way | MIT License
 
-Made possible by [@catSIXe](https://github.com/cheetahdotcat). :octocat:
+### Logo
+ - Share Tech Mono (c) Carrois Apostrophe | OFL
+ - [Twitter Emoji (Twemoji)](https://github.com/twitter/twemoji) (c) Twitter, Inc | CC-BY 4.0 [modified]
