@@ -235,48 +235,48 @@ const adidasRetoure = {
         page: 1,
         rotation: 0
     },
-    width: 1287,    // 109mm (=> 115mm)
+    width: 1346,    // 114mm (=> 120mm)
     crop(outputCanvas, ctx, image) {
         ctx.drawImage(image,   // Kopf "DHL Retoure"
-            354, 46, 824, 54,
+            354, 63, 824, 54,
             0, 12, 648, 42);
 
-        ctx.beginPath(); ctx.moveTo(0, 70); ctx.lineTo(650, 70); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(0, 65); ctx.lineTo(650, 65); ctx.stroke();
 
         ctx.drawImage(image,   // From
-            86, 110, 648, 190,
+            86, 128, 648, 190,
             0, 90, 648, 190);
 
         ctx.drawImage(image,   // To
-            86, 302, 520, 262,
-            0, 290, 520, 262);
+            86, 319, 527, 262,
+            0, 280, 527, 262);
         ctx.drawImage(image,   // rechte Klammer
-            778, 302, 128, 262,
-            520, 290, 128, 262);
+            785, 319, 121, 262,
+            527, 280, 121, 262);
 
         ctx.beginPath(); ctx.moveTo(0, 580); ctx.lineTo(650, 580); ctx.stroke();
 
         ctx.drawImage(image,   // Sendungsdaten
-            96, 664, 1010, 140,
+            96, 680, 1010, 140,
             0, 590, 648, 90);
 
         ctx.beginPath(); ctx.moveTo(665, 12); ctx.lineTo(665, outputCanvas.height - 12); ctx.stroke();
 
-        let barcodeSizeX = 600,
+        let barcodeSizeX = 610,
             barcodeSizeY = 240;
         ctx.drawImage(image,   // Barcode Returennummer
-            1370, 600, barcodeSizeX, 80,
-            687, 15, barcodeSizeX, 80);
+            1390, 616, barcodeSizeX, 80,
+            715, 15, barcodeSizeX, 80);
         ctx.drawImage(image,   // Retourennummer
-            1400, 800, 420, 54,
-            720, 100, 311, 40);
+            1400, 816, 420, 54,
+            735, 100, 311, 40);
 
         ctx.drawImage(image,   // Leitcode/Routingcode
-            150, 946, barcodeSizeX, barcodeSizeY,
-            687, 180, barcodeSizeX, barcodeSizeY);
+            170, 952, barcodeSizeX, barcodeSizeY,
+            715, 180, barcodeSizeX, barcodeSizeY);
         ctx.drawImage(image,   // Identcode/Sendungsnummer
-            150, 1320, barcodeSizeX, barcodeSizeY,
-            687, 440, barcodeSizeX, barcodeSizeY);
+            170, 1326, barcodeSizeX, barcodeSizeY,
+            715, 445, barcodeSizeX, barcodeSizeY);
     }
 };
 
