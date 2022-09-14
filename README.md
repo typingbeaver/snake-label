@@ -54,12 +54,6 @@ International returns are most probably better on a real paper sheet/A5 Label.
 - **Size:** 62x145mm
 
 
-## ToDos
-- page styling
-- multi-file processing
-- more labels...
-- cli / ~~Electron~~ Tauri app
-
 ---
 ## Dependencies & Licenses
 `snake_label` is licensed under [GPL-3.0](LICENSE).
