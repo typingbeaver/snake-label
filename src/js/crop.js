@@ -1,9 +1,9 @@
 import getLabel from './labels'
 
 import { PDFDocument } from 'pdf-lib';
-import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist';
-GlobalWorkerOptions.workerSrc = './dist/pdf.worker.min.js';
-const download = require('downloadjs');
+import { getDocument } from 'pdfjs-dist';
+import 'pdfjs-dist/build/pdf.worker.entry';
+// const download = require('downloadjs');
 
 const debug = false;
 debug && readFile();

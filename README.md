@@ -64,7 +64,7 @@ Made possible by [@catSIXe](https://github.com/cheetahdotcat). :octocat:
 - [PDF-LIB](https://github.com/Hopding/pdf-lib) (c) Andrew Dillon | MIT License
 - [PDF.js](https://github.com/mozilla/pdf.js) (c) Mozilla Foundation | Apache-2.0 License
 - [downloadjs](https://github.com/rndme/download) (c) dandavis | MIT License
-- [laravel-mix](https://github.com/laravel-mix/laravel-mix) (c) Jeffrey Way | MIT License
+- [vite](https://github.com/vitejs/vite) (c) Evan You | MIT License
 
 ### Logo
  - Share Tech Mono (c) Carrois Apostrophe | OFL
