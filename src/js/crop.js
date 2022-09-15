@@ -3,7 +3,7 @@ import getLabel from './labels'
 import { PDFDocument } from 'pdf-lib';
 import { getDocument } from 'pdfjs-dist';
 import 'pdfjs-dist/build/pdf.worker.entry';
-// const download = require('downloadjs');
+import { saveAs } from 'file-saver';
 
 const debug = false;
 debug && readFile();
@@ -18,12 +18,18 @@ downloadLabel.addEventListener('click', saveLabel, false);
 downloadLabelIMG.addEventListener('click', savePNG, false);
 
 function savePNG() {
-    download(labelArrayBuffer, document.getElementById('file-input').files[0].name.replace('.pdf', '') + '-Label.png', 'image/png');
+    saveAs(
+        new Blob([labelArrayBuffer], { type: 'image/png' }),
+        document.getElementById('file-input').files[0].name.replace('.pdf', '') + '-Label.png'
+    );
 }
 
 async function saveLabel() {
     const pdfBytes = await generatePDF();
-    download(pdfBytes, document.getElementById('file-input').files[0].name.replace('.pdf', '') + '-Label.pdf', 'application/pdf');
+    saveAs(
+        new Blob([pdfBytes], { type: 'application/pdf' }),
+        document.getElementById('file-input').files[0].name.replace('.pdf', '') + '-Label.pdf'
+    );
 }
 
 async function generatePDF() {

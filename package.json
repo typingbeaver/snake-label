@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/typingbeaver/snake-label#readme",
   "dependencies": {
-    "downloadjs": "^1.4.7",
+    "@types/file-saver": "^2.0.5",
+    "file-saver": "^2.0.5",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "^2.12.313"
   },

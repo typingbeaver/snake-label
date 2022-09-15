@@ -63,8 +63,8 @@ Made possible by [@catSIXe](https://github.com/cheetahdotcat). :octocat:
 ### Dependencies
 - [PDF-LIB](https://github.com/Hopding/pdf-lib) (c) Andrew Dillon | MIT License
 - [PDF.js](https://github.com/mozilla/pdf.js) (c) Mozilla Foundation | Apache-2.0 License
-- [downloadjs](https://github.com/rndme/download) (c) dandavis | MIT License
-- [vite](https://github.com/vitejs/vite) (c) Evan You | MIT License
+- [FileSaver.js](https://github.com/eligrey/FileSaver.js) (c) Eli Grey | MIT License
+- [Vite](https://github.com/vitejs/vite) (c) Evan You | MIT License
 
 ### Logo
  - Share Tech Mono (c) Carrois Apostrophe | OFL
