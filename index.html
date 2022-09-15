@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#4ade80">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#4ade80">
+
+    <title>snake_label</title>
+    <meta name="description" content="Schneidet Paketmarken auf dem lokalen Gerät auf passende Größe im 62mm-Format!">
+
+    
+  <script type="module" crossorigin src="/assets/index.cbb17e33.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/vendor.b3b4cbce.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor.pdfjs.df470f9c.js">
+</head>
+
+<body style="display: flex; flex-direction: column; align-items: center; font-family: 'Fira Mono', monospace;">
+    <h1>snake_label</h1>
+    <div style="margin-bottom: 2rem;">
+        made by <a href="https://github.com/typingbeaver">@typingbeaver</a> and
+        <a href="https://github.com/cheetahdotcat">@catSIXe</a>
+    </div>
+    <div style="margin-bottom: 1em;">
+        <label for="label-type"><strong>Paketlabel</strong></label>
+        <select id="label-type">
+            <optgroup label="dhl">
+                <option value="dhl-privat">dhl_paket_privat | 62x145mm</option>
+                <option value="dhl-privat-international">dhl_international_eu_privat [DHL native] | 62x165mm
+                </option>
+                <option value="dhl-retoure">dhl_retoure | 62x145mm</option>
+            </optgroup>
+            <optgroup label="hermes">
+                <option value="hermes-privat-v102">hermes_privat (V 1.0.2) | 62x150mm</option>
+            </optgroup>
+            <optgroup label="seller_returns">
+                <option value="adidas">adidas_retoure [dhl] | 62x120mm</option>
+                <option value="mediamarkt-saturn">mediamarkt_saturn_retoure [dhl] | 62x145mm</option>
+            </optgroup>
+        </select>
+    </div>
+    <div>
+        <input type="file" id="file-input" accept="application/pdf">
+        <button id="convertLabel">Convert to Label-PDF</button>
+    </div>
+    <div>
+        <img id="view" style="padding: 12px 36px; border: 1px solid black; margin-top: 1em;" hidden />
+    </div>
+    <div id="buttons" style="margin-top: 1em;" hidden>
+        <button id="downloadLabel">Download Label-PDF</button>
+        <button id="downloadLabelIMG">Download Label as PNG Image</button>
+    </div>
+</body>
+
+</html>
