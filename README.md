@@ -67,6 +67,9 @@ Made possible by [@catSIXe](https://github.com/cheetahdotcat). :octocat:
 - [Vite](https://github.com/vitejs/vite) (c) Evan You | MIT License
 - [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss) (c) Tailwind Labs, Inc. | MIT License
 
+### Fonts
+- [Fira Mono](https://github.com/bBoxType/FiraSans) (c) Mozilla Foundation, Telefonica S.A., Carrois Corporate GbR and bBox Type GmbH | OFL
+
 ### Logo
  - Share Tech Mono (c) Carrois Apostrophe | OFL
  - [Twitter Emoji (Twemoji)](https://github.com/twitter/twemoji) (c) Twitter, Inc | CC-BY 4.0 [modified]
