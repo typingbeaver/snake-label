@@ -65,6 +65,7 @@ Made possible by [@catSIXe](https://github.com/cheetahdotcat). :octocat:
 - [PDF.js](https://github.com/mozilla/pdf.js) (c) Mozilla Foundation | Apache-2.0 License
 - [FileSaver.js](https://github.com/eligrey/FileSaver.js) (c) Eli Grey | MIT License
 - [Vite](https://github.com/vitejs/vite) (c) Evan You | MIT License
+- [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss) (c) Tailwind Labs, Inc. | MIT License
 
 ### Logo
  - Share Tech Mono (c) Carrois Apostrophe | OFL
