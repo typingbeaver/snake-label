@@ -116,13 +116,13 @@ function readFile() {
         console.log('Label cropped.');
 
         // show label
-        viewImg.src = outputCanvas.toDataURL();
-        viewImg.hidden = buttons.hidden = true;
+        view.classList.add('invisible');
+        labelImg.src = outputCanvas.toDataURL();
         outputCanvas.toBlob((blob) => {
             const reader = new FileReader();
             reader.addEventListener('loadend', () => {
                 labelArrayBuffer = reader.result;
-                viewImg.hidden = buttons.hidden = false;
+                view.classList.remove('invisible');
             });
             reader.readAsArrayBuffer(blob);
         }, 'image/png');
