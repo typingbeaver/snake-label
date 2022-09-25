@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full text-gray-900 bg-gray-100 dark:text-white dark:bg-gray-900">
 
 <head>
     <meta charset="UTF-8">
@@ -16,45 +16,189 @@
     <meta name="description" content="Schneidet Paketmarken auf dem lokalen Gerät auf passende Größe im 62mm-Format!">
 
     
-  <script type="module" crossorigin src="/assets/index.cbb17e33.js"></script>
+    
+  <script type="module" crossorigin src="/assets/index.bdd3849d.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/vendor.b3b4cbce.js">
   <link rel="modulepreload" crossorigin href="/assets/vendor.pdfjs.df470f9c.js">
+  <link rel="stylesheet" href="/assets/index.dbe629a8.css">
 </head>
 
-<body style="display: flex; flex-direction: column; align-items: center; font-family: 'Fira Mono', monospace;">
-    <h1>snake_label</h1>
-    <div style="margin-bottom: 2rem;">
-        made by <a href="https://github.com/typingbeaver">@typingbeaver</a> and
-        <a href="https://github.com/cheetahdotcat">@catSIXe</a>
-    </div>
-    <div style="margin-bottom: 1em;">
-        <label for="label-type"><strong>Paketlabel</strong></label>
-        <select id="label-type">
-            <optgroup label="dhl">
-                <option value="dhl-privat">dhl_paket_privat | 62x145mm</option>
-                <option value="dhl-privat-international">dhl_international_eu_privat [DHL native] | 62x165mm
-                </option>
-                <option value="dhl-retoure">dhl_retoure | 62x145mm</option>
-            </optgroup>
-            <optgroup label="hermes">
-                <option value="hermes-privat-v102">hermes_privat (V 1.0.2) | 62x150mm</option>
-            </optgroup>
-            <optgroup label="seller_returns">
-                <option value="adidas">adidas_retoure [dhl] | 62x120mm</option>
-                <option value="mediamarkt-saturn">mediamarkt_saturn_retoure [dhl] | 62x145mm</option>
-            </optgroup>
-        </select>
-    </div>
-    <div>
-        <input type="file" id="file-input" accept="application/pdf">
-        <button id="convertLabel">Convert to Label-PDF</button>
-    </div>
-    <div>
-        <img id="view" style="padding: 12px 36px; border: 1px solid black; margin-top: 1em;" hidden />
-    </div>
-    <div id="buttons" style="margin-top: 1em;" hidden>
-        <button id="downloadLabel">Download Label-PDF</button>
-        <button id="downloadLabelIMG">Download Label as PNG Image</button>
+<body class="h-full">
+    <div class="min-h-full">
+
+        <div class="bg-green-400 pb-32">
+            <header class="py-4 mb-4">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div
+                        class="flex h-20 justify-between items-center text-end border-b-8 border-double border-green-600 border-opacity-80">
+
+                        <a href="/" aria-label="Home">
+                            <img src="/img/snake_label.svg" aria-label="snake_label Logo"
+                                class="h-24 w-auto mt-4 pr-6 bg-green-400"></img>
+                        </a>
+                        <div class="p-2 lg:ml-6">
+                            <!-- <a href="https://github.com/typingbeaver/snake-label/tree/dist"
+                                class="py-1 px-2 bg-gray-900 text-sm font-medium text-white md:text-base hover:text-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400">
+                                <span aria-hidden>&lt;</span>
+                                <span class="underline underline-offset-2 decoration-amber-400 decoration-[1.5px]">
+                                    Get your offline version on GitHub</span>
+                                <span aria-hidden>&gt;</span>
+                            </a> -->
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+
+        <main class="-mt-32 h-full">
+            <!-- Label Input -->
+            <div class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+                <div class="bg-white text-gray-900 px-5 py-6 shadow sm:px-6">
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <!-- Label Selection -->
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <label for="label-type" class="flex-shrink-0 font-medium px-2">
+                                    Paketlabel <span aria-hidden>:::</span>
+                                </label>
+                                <select id="label-type"
+                                    class="w-full border-gray-900 py-2 pl-3 pr-10 focus:border-green-600 focus:outline-none focus:ring-green-600 focus:ring-2">
+                                    <optgroup label="dhl">
+                                        <option value="dhl-privat">dhl_paket_privat | 62x145mm</option>
+                                        <option value="dhl-privat-international">dhl_international_eu_privat
+                                            [DHL native] | 62x165mm
+                                        </option>
+                                        <option value="dhl-retoure">dhl_retoure | 62x145mm</option>
+                                    </optgroup>
+                                    <optgroup label="hermes">
+                                        <option value="hermes-privat-v102">hermes_privat (V 1.0.2) | 62x150mm</option>
+                                    </optgroup>
+                                    <optgroup label="seller_returns">
+                                        <option value="adidas">adidas_retoure [dhl] | 62x120mm</option>
+                                        <option value="mediamarkt-saturn">mediamarkt_saturn_retoure [dhl] | 62x145mm
+                                        </option>
+                                    </optgroup>
+                                </select>
+                            </div>
+
+                            <!-- Label Options - In the future... -->
+                            <!-- Label Details - In the future... -->
+                        </div>
+
+                        <!-- File Input -->
+                        <div>
+                            <div class="w-full border border-gray-900 p-4">
+                                <div class="flex justify-between gap-4 text-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor"
+                                        class="my-auto h-12 w-12 text-green-400" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                                    </svg>
+                                    <div class="w-full">
+                                        <div class="text-gray-900">
+                                            <label for="file-input" class="cursor-pointer hover:text-green-500">
+                                                <!-- Select file -->
+                                                <input id="file-input" type="file" accept="application/pdf"
+                                                    class="w-full file:px-2 file:bg-green-400 file:text-gray-900 file:border-0 file:font-sans focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2">
+                                            </label>
+                                            <!-- <div class="pl-1">or drag and drop</div> -->
+                                        </div>
+                                        <p class="mt-2 text-xs text-gray-900">PDF</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Crop Button -->
+                            <div class="w-full text-end">
+                                <button id="convertLabel"
+                                    class="mt-8 bg-green-400 px-4 py-2 text-sm font-medium text-gray-900 shadow-sm hover:font-bold focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
+                                    Convert to snake_label</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Label Output -->
+            <div id="view" class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8 invisible">
+                <!-- Label Preview -->
+                <div class="border-8 border-green-400 md:p-2 md:border-[12px]">
+                    <div class="bg-white px-6 py-2">
+                        <img id="labelImg" aria-label="Label-Vorschau" />
+                    </div>
+                </div>
+
+                <!-- Download Buttons -->
+                <div id="buttons" class="flex justify-center gap-4 mt-8">
+                    <button id="downloadLabel"
+                        class="bg-green-400 px-4 py-2 text-sm font-medium text-gray-900 shadow-sm hover:font-bold focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
+                        Save as PDF</button>
+                    <button id="downloadLabelIMG"
+                        class="bg-amber-400 px-4 py-2 text-sm font-medium text-gray-900 shadow-sm hover:font-bold focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
+                        Save as PNG Image</button>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div
+                class="py-6 border-t-4 border-double border-gray-900 dark:border-white md:flex md:items-center md:justify-between">
+                <!-- Links -->
+                <div class="flex justify-center space-x-6 md:order-2">
+                    <a href="https://github.com/typingbeaver/snake-label"
+                        class="rounded-full text-green-400 hover:text-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400">
+                        <span class="sr-only">GitHub</span>
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd"
+                                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+                <!-- Copyright Note -->
+                <div class="mt-8 md:order-1 md:mt-0">
+                    <p class="text-center text-base text-grey-900">
+                        &copy; 2022
+                        <a href="https://github.com/typingbeaver" class="link">typingbeaver</a>
+                        and
+                        <a href="https://github.com/cheetahdotcat" class="link">catSIXe</a>.
+                        Licensed under <a href="https://www.gnu.org/licenses/gpl-3.0.html" class="link">GPL-3.0</a>.
+                    </p>
+                </div>
+            </div>
+            <!-- Privacy information -->
+            <details class="py-4 open:font-medium">
+                <summary
+                    class="mb-2 w-fit cursor-pointer list-none underline underline-offset-2 decoration-green-400 decoration-2 hover:font-green-400 hover:font-medium focus:outline-none focus:decoration-amber-400">
+                    Datenschutz <span aria-hidden>:::</span> Privacy information
+                </summary>
+                <div class="font-normal text-justify break-words">
+                    <p>snake_label arbeitet vollständig lokal auf Ihrem eigenen Gerät. snake_label speichert oder
+                        verarbeitet daher keine personenbezogenen Daten.</p>
+                    <p>Für Verlinkungen auf externe Webseiten wird keine Haftung übernommen.</p>
+                    </br>
+                    <p><em>Hinweis zu snake-label.de:</em></br>
+                        Die Online-Version snake-label.de wird zur Bereitstellung der benötigten Softwarebibliotheken
+                        angeboten von Servern der GitHub B.V., Prins
+                        Bernhardplein 200, 1097 JB Amsterdam, NL.
+                        Es findet die Speicherung und Verarbeitung folgender personenbezogener Daten statt:
+                    <ul class=" list-disc list-inside">
+                        <li><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#data-collection"
+                                class="link">
+                                IP-Adresse (zu Sicherheitszwecken)
+                            </a></li>
+                        Vollständige Datenschutzerklärung von GitHub <a
+                            href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
+                            class="link">
+                            siehe hier [Englisch]</a>.
+                    </ul>
+                    </p>
+                </div>
+            </details>
+        </footer>
+
     </div>
 </body>
 
