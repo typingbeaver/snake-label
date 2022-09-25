@@ -5,6 +5,7 @@
   "browser": "index.html",
   "scripts": {
     "dev": "vite",
+    "host": "vite --host",
     "build": "vite build",
     "preview": "vite preview"
   },

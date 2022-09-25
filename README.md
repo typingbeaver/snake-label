@@ -67,8 +67,9 @@ Made possible by [@catSIXe](https://github.com/cheetahdotcat). :octocat:
 - [Vite](https://github.com/vitejs/vite) (c) Evan You | MIT License
 - [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss) (c) Tailwind Labs, Inc. | MIT License
 
-### Fonts
+### Theming
 - [Fira Mono](https://github.com/bBoxType/FiraSans) (c) Mozilla Foundation, Telefonica S.A., Carrois Corporate GbR and bBox Type GmbH | OFL
+- [Heroicons](https://github.com/tailwindlabs/heroicons) (c) Refactoring UI Inc. | MIT License
 
 ### Logo
  - Share Tech Mono (c) Carrois Apostrophe | OFL
