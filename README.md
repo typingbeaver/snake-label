@@ -19,8 +19,7 @@ Currently available labels
 - **Size:** 62x145mm
 - **Note:** Zusatzleistungen and Warnings are not included in these labels (yet?).
 
-_[no sampe image yet]_
-<!-- ![Sample Image]() -->
+![Sample Image](/img/samples/dhl_privat.png)
 
 
 #### `dhl_international_eu_privat`
@@ -28,8 +27,7 @@ _[no sampe image yet]_
 - **Size:** 62x165mm
 - **Note:** *Zusatzleistungen and Warnings are not included in these labels (yet?).*
 
-_[no sampe image yet]_
-<!-- ![Sample Image]() -->
+![Sample Image](/img/samples/dhl_international_eu_privat.png)
 
 #### `dhl_retoure` (Deutschland)
 - **Size:** 62x145mm
