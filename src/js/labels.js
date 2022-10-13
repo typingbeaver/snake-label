@@ -47,6 +47,10 @@ const dhlPrivat = {
             -395, 645, -20, 194);
         ctx.rotate(Math.PI / 2);
 
+        ctx.drawImage(image,   // Bahntransport
+            2802, 679, 234, 154,
+            666, 455, 152, 100);
+
         ctx.drawImage(image,   // Sendungsdaten
             1964, 933, 1124, 152,
             0, 565, 890, 120);
