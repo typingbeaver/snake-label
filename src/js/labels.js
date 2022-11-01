@@ -2,6 +2,7 @@ export default function (labelType) {
     switch (labelType) {
         case 'dhl-privat': return dhlPrivat;
         case 'dhl-privat-international': return dhlPrivatInternational;
+        case 'dhl-privat-international-native': return dhlPrivatInternationalNative;
         case 'dhl-retoure': return dhlRetoure;
         case 'hermes-privat-v102': return hermesPrivatV102;
         case 'adidas': return adidasRetoure;
@@ -69,6 +70,85 @@ const dhlPrivat = {
 };
 
 const dhlPrivatInternational = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 90
+    },
+    width:  2232,    // 189mm (=> 195mm)
+    crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,   // Kopf
+            1964, 106, 1124, 94,
+            0, 0, 890, 74);
+
+        ctx.drawImage(image,   // Adresse
+            1964, 210, 785, 625,
+            0, 95, 580, 465);
+
+        let scSize = 296;
+        ctx.drawImage(image,   // Sicherheitscode
+            2763, 215, scSize, scSize,
+            594, 95, scSize, scSize);
+
+        ctx.rotate(-Math.PI / 2);
+        ctx.drawImage(image,   // Sicherheitscode Text
+            3075, 244, 20, 194,
+            -395, 645, -20, 194);
+        ctx.rotate(Math.PI / 2);
+
+        ctx.drawImage(image,   // Telefonnummer
+            2770, 740, 300, 35,
+            590, 520, 300, 35);
+
+        ctx.drawImage(image,   // Sendungsdaten
+            1964, 933, 1124, 152,
+            0, 576, 890, 120);
+
+        ctx.beginPath(); ctx.moveTo(910, 0); ctx.lineTo(910, outputCanvas.height); ctx.stroke();
+
+        ctx.rotate(-Math.PI / 2);
+        ctx.drawImage(image,   // Icons / Go Green
+            1964, 854, 1124, 70,
+            -696, 920, 696, 43);    // too long, could glitch!
+
+        ctx.drawImage(image,   // Tracked
+            1964, 1197, 1124, 122,
+            -696, 986, 696, 76);    // too long, could glitch!
+        ctx.rotate(Math.PI / 2);
+
+        ctx.drawImage(image,   // Tracked Icon
+            2846, 530, 130, 202,
+            930, 10, 130, 202);
+
+        ctx.beginPath(); ctx.moveTo(920, 230); ctx.lineTo(1070, 230); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(970, 240); ctx.lineTo(970, outputCanvas.height); ctx.stroke();
+
+        ctx.beginPath(); ctx.moveTo(1080, 0); ctx.lineTo(1080, outputCanvas.height); ctx.stroke();
+
+        let barcodeSizeX = 1124,
+            barcodeSizeY = 280;
+        ctx.drawImage(image,   // Unzustellbarkeit
+            1964, 1422, barcodeSizeX, 70,
+            1100, 4, barcodeSizeX, 70);
+
+        ctx.drawImage(image,   // Leitcode/Routingcode
+            1964, 1634, barcodeSizeX, barcodeSizeY,
+            1100, 100, barcodeSizeX, barcodeSizeY);
+
+        ctx.drawImage(image,   // Category Letter
+            1964, 2000, 160, barcodeSizeY-20,
+            1100, 416, 160, barcodeSizeY-20);
+        ctx.drawImage(image,   // Identcode/Sendungsnummer
+            1964, 2048+260, 160, 20,
+            1100, 416+260, 160, 20);
+
+        ctx.drawImage(image,   // Identcode/Sendungsnummer
+            1964+160, 2048, barcodeSizeX-160, barcodeSizeY,
+            1100+160, 416, barcodeSizeX-160, barcodeSizeY);
+    }
+};
+
+const dhlPrivatInternationalNative = {
     file: {
         type: 'pdf',
         page: 1,
