@@ -41,6 +41,28 @@ International returns are most probably better on a real paper sheet/A5 Label.
 
 ![Sample Image](img/samples/dhl_retoure.png)
 
+### Deutsche Post
+
+#### `briefmarke`
+- **Size:** 62x40mm
+
+*No sample image yet.*
+<!-- ![Sample Image]() -->
+
+#### `briefmarke_short`
+- **Size:** 62x30mm
+- **Note:** *Not suited for e. g. Einschreiben International.*
+
+
+*No sample image yet.*
+<!-- ![Sample Image]() -->
+
+#### `briefmarke_adresse`
+- **Size:** 62x80mm
+
+*No sample image yet.*
+<!-- ![Sample Image]() -->
+
 ### Hermes
 
 #### `hermes_privat (V 1.0.2)`

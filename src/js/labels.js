@@ -4,6 +4,9 @@ export default function (labelType) {
         case 'dhl-privat-international': return dhlPrivatInternational;
         case 'dhl-privat-international-native': return dhlPrivatInternationalNative;
         case 'dhl-retoure': return dhlRetoure;
+        case 'dp-briefmarke': return dpBriefmarke;
+        case 'dp-briefmarke-short': return dpBriefmarkeShort
+        case 'dp-briefmarke-adresse': return dpBriefmarkeAdresse;
         case 'hermes-privat-v102': return hermesPrivatV102;
         case 'adidas': return adidasRetoure;
         case 'mediamarkt-saturn': return mediamarktSaturnRetoure;
@@ -17,6 +20,7 @@ const template = {
         page: 1,
         rotation: 0
     },
+    // scale: 4,    // optional, defaults to 4 (288dpi) -- 4.1666 for 300dpi
     width: 0,
     crop(outputCanvas, ctx, image) { }
 }
@@ -243,6 +247,51 @@ const dhlRetoure = {
         ctx.drawImage(image,   // Identcode/Sendungsnummer
             2030, 1810, barcodeSizeX, barcodeSizeY,
             686, 445, barcodeSizeX, barcodeSizeY);
+    }
+};
+
+const dpBriefmarke = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 90
+    },
+    scale: 4.1666,
+    width: 402,    // 34mm (=> 40mm)
+    crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,
+            17, 11, 402, 696,
+            0, 0, 402, 696);
+    }
+};
+
+const dpBriefmarkeShort = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 90
+    },
+    scale: 4.1666,
+    width: 283,    // 24mm (=> 30mm)
+    crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,
+            17, 11, 283, 696,
+            0, 0, 283, 696);
+    }
+};
+
+const dpBriefmarkeAdresse = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 90
+    },
+    scale: 4.1666,
+    width: 874,    // 74mm (=> 80mm)
+    crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,
+            64, 18, 874, 696,
+            0, 0, 874, 696);
     }
 };
 

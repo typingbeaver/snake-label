@@ -74,7 +74,7 @@ function readFile() {
         // render page on canvas
         const canvas = document.createElement('canvas'),
             viewport = page.getViewport({
-                scale: 4,
+                scale: label.scale || 4,
                 rotation: label.file.rotation
             });
         canvas.width = viewport.width;
