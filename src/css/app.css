@@ -4,7 +4,7 @@
 
 @layer components {
     .link {
-        @apply text-green-400 underline-offset-2 decoration-[1.5px] hover:font-medium hover:text-amber-400 focus:outline-none focus:underline focus:decoration-amber-400
+        @apply text-green-400 underline-offset-2 decoration-[1.5px] hover:text-amber-400 focus:outline-none focus:underline focus:decoration-amber-400
     }
 }
 

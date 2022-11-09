@@ -2,35 +2,33 @@
 <html lang="en" class="h-full text-gray-900 bg-gray-100 dark:text-white dark:bg-gray-900">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#4ade80">
-    <link rel="manifest" href="/site.webmanifest">
-    <meta name="theme-color" content="#4ade80">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#4ade80" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#4ade80" />
 
     <title>snake_label</title>
-    <meta name="description" content="Schneidet Paketmarken auf dem lokalen Gerät auf passende Größe im 62mm-Format!">
+    <meta name="description" content="Schneidet Paketmarken auf dem lokalen Gerät auf passende Größe im 62mm-Format!" />
 
-    <link rel="stylesheet" href="src/css/app.css">
+    <link rel="stylesheet" href="src/css/app.css" />
     <script type="module" src="src/js/crop.js" defer></script>
 </head>
 
 <body class="h-full">
     <div class="min-h-full">
-
         <div class="bg-green-400 pb-32">
             <header class="py-4 mb-4">
                 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div
                         class="flex h-20 justify-between items-center text-end border-b-8 border-double border-green-600 border-opacity-80">
-
                         <a href="/" aria-label="Home">
                             <img src="/img/snake_label.svg" aria-label="snake_label Logo"
-                                class="h-24 w-auto mt-4 pr-6 bg-green-400"></img>
+                                class="h-24 w-auto mt-4 pr-6 bg-green-400" />
                         </a>
                         <div class="p-2 lg:ml-6">
                             <!-- <a href="https://github.com/typingbeaver/snake-label/tree/dist"
@@ -60,17 +58,30 @@
                                 <select id="label-type"
                                     class="w-full border-gray-900 py-2 pl-3 pr-10 focus:border-green-600 focus:outline-none focus:ring-green-600 focus:ring-2">
                                     <optgroup label="dhl">
-                                        <option value="dhl-privat">dhl_paket_privat | 62x145mm</option>
-                                        <option value="dhl-privat-international">dhl_international_eu_privat | 62x195mm</option>
-                                        <option value="dhl-privat-international-native">dhl_international_eu_dhl_native_privat | 62x165mm</option>
-                                        <option value="dhl-retoure">dhl_retoure | 62x145mm</option>
+                                        <option value="dhl-privat">
+                                            dhl_paket_privat | 62x145mm
+                                        </option>
+                                        <option value="dhl-privat-international">
+                                            dhl_international_eu_privat | 62x195mm
+                                        </option>
+                                        <option value="dhl-privat-international-native">
+                                            dhl_international_eu_dhl_native_privat | 62x165mm
+                                        </option>
+                                        <option value="dhl-retoure">
+                                            dhl_retoure | 62x145mm
+                                        </option>
                                     </optgroup>
                                     <optgroup label="hermes">
-                                        <option value="hermes-privat-v102">hermes_privat (V 1.0.2) | 62x150mm</option>
+                                        <option value="hermes-privat-v102">
+                                            hermes_privat (V 1.0.2) | 62x150mm
+                                        </option>
                                     </optgroup>
                                     <optgroup label="seller_returns">
-                                        <option value="adidas">adidas_retoure [dhl] | 62x120mm</option>
-                                        <option value="mediamarkt-saturn">mediamarkt_saturn_retoure [dhl] | 62x145mm
+                                        <option value="adidas">
+                                            adidas_retoure [dhl] | 62x120mm
+                                        </option>
+                                        <option value="mediamarkt-saturn">
+                                            mediamarkt_saturn_retoure [dhl] | 62x145mm
                                         </option>
                                     </optgroup>
                                 </select>
@@ -95,7 +106,7 @@
                                             <label for="file-input" class="cursor-pointer hover:text-green-500">
                                                 <!-- Select file -->
                                                 <input id="file-input" type="file" accept="application/pdf"
-                                                    class="w-full file:px-2 file:bg-green-400 file:text-gray-900 file:border-0 file:font-sans focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2">
+                                                    class="w-full file:px-2 file:bg-green-400 file:text-gray-900 file:border-0 file:font-sans focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2" />
                                             </label>
                                             <!-- <div class="pl-1">or drag and drop</div> -->
                                         </div>
@@ -107,8 +118,9 @@
                             <!-- Crop Button -->
                             <div class="w-full text-end">
                                 <button id="convertLabel"
-                                    class="mt-8 bg-green-400 px-4 py-2 text-sm font-medium text-gray-900 shadow-sm hover:font-bold focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
-                                    Convert to snake_label</button>
+                                    class="mt-8 bg-green-400 px-4 py-2 text-sm text-gray-900 font-bold shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
+                                    Convert to snake_label
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -128,13 +140,14 @@
                 <div id="buttons" class="flex justify-center gap-4 mt-8">
                     <button id="downloadLabel"
                         class="bg-green-400 px-4 py-2 text-sm font-medium text-gray-900 shadow-sm hover:font-bold focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
-                        Save as PDF</button>
+                        Save as PDF
+                    </button>
                     <button id="downloadLabelIMG"
                         class="bg-amber-400 px-4 py-2 text-sm font-medium text-gray-900 shadow-sm hover:font-bold focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
-                        Save as PNG Image</button>
+                        Save as PNG Image
+                    </button>
                 </div>
             </div>
-
         </main>
 
         <footer class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -158,8 +171,8 @@
                         &copy; 2022
                         <a href="https://github.com/typingbeaver" class="link">typingbeaver</a>
                         and
-                        <a href="https://github.com/cheetahdotcat" class="link">catSIXe</a>.
-                        Licensed under <a href="https://www.gnu.org/licenses/gpl-3.0.html" class="link">GPL-3.0</a>.
+                        <a href="https://github.com/cheetahdotcat" class="link">catSIXe</a>. Licensed under
+                        <a href="https://www.gnu.org/licenses/gpl-3.0.html" class="link">GPL-3.0</a>.
                     </p>
                 </div>
             </div>
@@ -170,30 +183,41 @@
                     Datenschutz <span aria-hidden>:::</span> Privacy information
                 </summary>
                 <div class="font-normal text-justify break-words">
-                    <p>snake_label arbeitet vollständig lokal auf Ihrem eigenen Gerät. snake_label speichert oder
-                        verarbeitet daher keine personenbezogenen Daten.</p>
-                    <p>Für Verlinkungen auf externe Webseiten wird keine Haftung übernommen.</p>
-                    </br>
-                    <p><em>Hinweis zu snake-label.de:</em></br>
-                        Die Online-Version snake-label.de wird zur Bereitstellung der benötigten Softwarebibliotheken
-                        angeboten von Servern der GitHub B.V., Prins
-                        Bernhardplein 200, 1097 JB Amsterdam, NL.
-                        Es findet die Speicherung und Verarbeitung folgender personenbezogener Daten statt:
-                    <ul class=" list-disc list-inside">
-                        <li><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#data-collection"
+                    <p>
+                        snake_label arbeitet vollständig lokal auf Ihrem eigenen Gerät.
+                        snake_label speichert oder verarbeitet daher keine
+                        personenbezogenen Daten.
+                    </p>
+                    <p>
+                        Für Verlinkungen auf externe Webseiten wird keine Haftung
+                        übernommen.
+                    </p>
+                    <br />
+                    <p>
+                        <em>Hinweis zu snake-label.de:</em><br />
+                        Die Online-Version snake-label.de wird zur Bereitstellung der
+                        benötigten Softwarebibliotheken angeboten von Servern der GitHub
+                        B.V., Prins Bernhardplein 200, 1097 JB Amsterdam, NL. Es findet
+                        die Speicherung und Verarbeitung folgender personenbezogener Daten
+                        statt:
+                    </p>
+                    <ul class="list-disc list-inside">
+                        <li>
+                            <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#data-collection"
                                 class="link">
                                 IP-Adresse (zu Sicherheitszwecken)
-                            </a></li>
-                        Vollständige Datenschutzerklärung von GitHub <a
-                            href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
+                            </a>
+                        </li>
+                    </ul>
+                    <p>
+                        Vollständige Datenschutzerklärung von GitHub
+                        <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
                             class="link">
                             siehe hier [Englisch]</a>.
-                    </ul>
                     </p>
                 </div>
             </details>
         </footer>
-
     </div>
 </body>
 
