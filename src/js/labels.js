@@ -275,7 +275,7 @@ const dpBriefmarkeShort = {
     width: 283,    // 24mm (=> 30mm)
     crop(outputCanvas, ctx, image) {
         ctx.drawImage(image,
-            17, 11, 283, 696,
+            136, 11, 283, 696,
             0, 0, 283, 696);
     }
 };
