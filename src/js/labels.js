@@ -254,7 +254,7 @@ const dpBriefmarke = {
     file: {
         type: 'pdf',
         page: 1,
-        rotation: 270
+        rotation: 90
     },
     scale: 4.1666,
     width: 402,    // 34mm (=> 40mm)
@@ -269,13 +269,13 @@ const dpBriefmarkeShort = {
     file: {
         type: 'pdf',
         page: 1,
-        rotation: 270
+        rotation: 90
     },
     scale: 4.1666,
     width: 283,    // 24mm (=> 30mm)
     crop(outputCanvas, ctx, image) {
         ctx.drawImage(image,
-            17, 11, 283, 696,
+            136, 11, 283, 696,
             0, 0, 283, 696);
     }
 };
