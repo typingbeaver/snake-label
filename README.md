@@ -19,64 +19,73 @@ Currently available labels
 - **Size:** 62x145mm
 - **Note:** Zusatzleistungen and Warnings are not included in these labels (yet?).
 
-![Sample Image](/img/samples/dhl_privat.png)
+![Sample Image](/samples/dhl/dhl_privat.png)
+<!-- [Sample PDF]() -->
 
 #### `dhl_international_eu_privat`
 - **Size:** 62x195mm
 
-*No sample image yet.*
-<!-- ![Sample Image]() -->
+![Sample Image](/samples/dhl/dhl_international_eu_privat.png) \
+[Sample PDF](/samples/dhl/dhl_international_eu_privat.pdf)
 
 #### `dhl_international_eu_dhl_native_privat`
 [DHL native countries, eg. NL]
 - **Size:** 62x165mm
 - **Note:** *Zusatzleistungen and Warnings are not included in these labels (yet?).*
 
-![Sample Image](/img/samples/dhl_international_eu_native_privat.png)
+![Sample Image](/samples/dhl/dhl_international_eu_native_privat.png)
+<!-- [Sample PDF]() -->
 
 #### `dhl_retoure` (Deutschland)
 - **Size:** 62x145mm
 
 International returns are most probably better on a real paper sheet/A5 Label.
 
-![Sample Image](img/samples/dhl_retoure.png)
+![Sample Image](/samples/dhl/dhl_retoure.png)
+<!-- [Sample PDF]() -->
 
 ### Deutsche Post
 
 #### `briefmarke`
 - **Size:** 62x40mm
 
-*No sample image yet.*
-<!-- ![Sample Image]() -->
+![Sample Image](/samples/deutsche_post/briefmarke.png) \
+[Sample PDF](/samples/deutsche_post/briefmarke.pdf)
 
 #### `briefmarke_short`
 - **Size:** 62x30mm
-- **Note:** *Not suited for e. g. Einschreiben International.*
+- **Note:** *Not suited for e. g. "Einschreiben International".*
 
-
-*No sample image yet.*
-<!-- ![Sample Image]() -->
+![Sample Image](/samples/deutsche_post/briefmarke_short.png) \
+[Sample PDF](/samples/deutsche_post/briefmarke_short.pdf)
 
 #### `briefmarke_adresse`
 - **Size:** 62x80mm
 
-*No sample image yet.*
-<!-- ![Sample Image]() -->
+![Sample Image](/samples/deutsche_post/briefmarke_adresse.png) \
+[Sample PDF](/samples/deutsche_post/briefmarke_adresse.pdf)
 
 ### Hermes
 
 #### `hermes_privat (V 1.0.2)`
 - **Size:** 62x150mm
 
-![Sample Image](img/samples/hermes_privat.png)
+![Sample Image](/samples/hermes/hermes_privat.png)
+<!-- [Sample PDF]() -->
 
 ### Seller Returns
 
 #### `adidas_retoure [dhl]`
 - **Size:** 62x120mm
 
+<!-- ![Sample Image]() -->
+<!-- [Sample PDF]() -->
+
 #### `mediamarkt_saturn_retoure [dhl]`
 - **Size:** 62x145mm
+
+<!-- ![Sample Image]() -->
+<!-- [Sample PDF]() -->
 
 
 ---
