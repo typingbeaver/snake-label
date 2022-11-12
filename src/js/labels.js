@@ -34,8 +34,8 @@ const dhlPrivat = {
     width: 1642,    // 139mm (=> 145mm)
     crop(outputCanvas, ctx, image) {
         ctx.drawImage(image,   // Kopf
-            1964, 108, 1124, 92,
-            0, 12, 890, 73);
+            1964, 106, 1124, 94,
+            0, 0, 890, 74);
 
         ctx.drawImage(image,   // Adresse
             1964, 210, 785, 625,
@@ -54,22 +54,22 @@ const dhlPrivat = {
 
         ctx.drawImage(image,   // Bahntransport
             2802, 679, 234, 154,
-            666, 455, 152, 100);
+            666, 465, 152, 100);
 
         ctx.drawImage(image,   // Sendungsdaten
             1964, 933, 1124, 152,
-            0, 565, 890, 120);
+            0, 576, 890, 120);
 
-        ctx.beginPath(); ctx.moveTo(910, 12); ctx.lineTo(910, outputCanvas.height - 12); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(910, 0); ctx.lineTo(910, outputCanvas.height); ctx.stroke();
 
-        let barcodeSizeX = 676,
-            barcodeSizeY = 300;
+        let barcodeSizeX = 710,
+            barcodeSizeY = 320;
         ctx.drawImage(image,   // Leitcode/Routingcode
-            2198, 1546, barcodeSizeX, barcodeSizeY,
-            950, 30, barcodeSizeX, barcodeSizeY);
+            2181, 1526, barcodeSizeX, barcodeSizeY,
+            930, 20, barcodeSizeX, barcodeSizeY);
         ctx.drawImage(image,   // Identcode/Sendungsnummer
-            2198, 1960, barcodeSizeX, barcodeSizeY,
-            950, 380, barcodeSizeX, barcodeSizeY);
+            2181, 1940, barcodeSizeX, barcodeSizeY,
+            930, 376, barcodeSizeX, barcodeSizeY);
     }
 };
 
