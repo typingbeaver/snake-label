@@ -90,6 +90,13 @@ International returns are most probably better on a real paper sheet/A5 Label.
 <!-- ![Sample Image]() -->
 <!-- [Sample PDF]() -->
 
+### DHL Netherlands / DHL Nederland
+
+#### `dhl_nl [mdp v5.7]`
+- **Size:** 62x110mm
+
+![Sample Image](/samples/dhl_netherlands/dhl_nl.png) \
+[Sample PDF](/samples/dhl_netherlands/dhl_nl.pdf)
 
 ---
 ## Dependencies & Licenses
