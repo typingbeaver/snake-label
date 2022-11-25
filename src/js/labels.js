@@ -48,7 +48,7 @@ const dhlPrivat = {
         let scSize = 296;
         ctx.drawImage(image,   // Sicherheitscode
             2763, 215, scSize, scSize,
-            594, 95, scSize, scSize);
+            594, 90, scSize, scSize);
 
         ctx.rotate(-Math.PI / 2);
         ctx.drawImage(image,   // Sicherheitscode Text
@@ -96,7 +96,7 @@ const dhlPrivatInternational = {
         let scSize = 296;
         ctx.drawImage(image,   // Sicherheitscode
             2763, 215, scSize, scSize,
-            594, 95, scSize, scSize);
+            594, 90, scSize, scSize);
 
         ctx.rotate(-Math.PI / 2);
         ctx.drawImage(image,   // Sicherheitscode Text
@@ -170,7 +170,7 @@ const dhlPrivatInternationalNative = {
 
         ctx.drawImage(image,   // Adresse
             1964, 210, 785, 625,
-            0, 95, 580, 465);
+            0, 90, 580, 465);
 
         let scSize = 296;
         ctx.drawImage(image,   // Sicherheitscode
