@@ -25,13 +25,13 @@ Currently available labels
 ![Sample Image](/samples/dhl/dhl_privat.png) \
 [Sample PDF](/samples/dhl/dhl_privat.pdf)
 
-#### `dhl_international_eu_privat`
+#### `dhl_privat_international_eu`
 - **Size:** 62x195mm
 
 ![Sample Image](/samples/dhl/dhl_international_eu_privat.png) \
 [Sample PDF](/samples/dhl/dhl_international_eu_privat.pdf)
 
-#### `dhl_international_eu_dhl_native_privat`
+#### `dhl_privat_international_eu_native`
 [DHL native countries, eg. NL]
 - **Size:** 62x165mm
 - **Note:** *Zusatzleistungen and Warnings are not included in these labels (yet?).*
