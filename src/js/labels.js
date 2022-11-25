@@ -10,7 +10,10 @@ export default function (labelType) {
         case 'hermes-privat-v102': return hermesPrivatV102;
         case 'adidas': return adidasRetoure;
         case 'mediamarkt-saturn': return mediamarktSaturnRetoure;
-        case 'dhl-nl': return dhlNL;
+        case 'dhl-nl-4-4': return dhlNL44;
+        case 'dhl-nl-4-5': return dhlNL45;
+        case 'dhl-nl-5-4': return dhlNL54;
+        case 'dhl-nl-5-5': return dhlNL55;
         default: console.error("Unknown label type.");
     };
 }
@@ -459,7 +462,7 @@ const mediamarktSaturnRetoure = {
     }
 };
 
-const dhlNL = {
+const dhlNL44 = {
     file: {
         type: 'pdf',
         page: 1,
@@ -468,26 +471,128 @@ const dhlNL = {
     width: 1217,    // 103mm (=> 110mm)
     crop(outputCanvas, ctx, image) {
         ctx.drawImage(image,   // Header & From
-            75, 95, 1078, 211,
+            55, 95, 1078, 211,
             0, 0, 900, 176);
 
         ctx.drawImage(image,   // To
-            75, 366, 1078, 325,
+            55, 367, 1078, 325,
             0, 210, 900, 271);
 
         ctx.drawImage(image,   // Shipment Info
-            75, 753, 1078, 202,
+            55, 753, 1078, 202,
             0, 527, 900, 169);
 
         // ctx.drawImage(image,   // Label Version
-        //     75, 1304, 1078, 42,
+        //     55, 1304, 1078, 42,
         //     0, 0, 900, 35);
 
         ctx.beginPath(); ctx.moveTo(920, 0); ctx.lineTo(920, 696); ctx.stroke();
 
         ctx.rotate(-Math.PI / 2)
         ctx.drawImage(image,   // Barcode
-            266, 1036, 696, 250,
+            246, 1036, 696, 250,
+            0, 960, -696, 250);
+        ctx.rotate(Math.PI / 2)
+    }
+};
+
+const dhlNL45 = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 0
+    },
+    width: 1217,    // 103mm (=> 110mm)
+    crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,   // Header & From
+            55, 95, 1078, 211,
+            0, 0, 900, 176);
+
+        ctx.drawImage(image,   // To
+            55, 367, 1078, 325+40,
+            0, 200, 900, 305);
+
+        ctx.drawImage(image,   // Shipment Info
+            55, 753+40, 1078, 202,
+            0, 527, 900, 169);
+
+        // ctx.drawImage(image,   // Label Version
+        //     55, 1304+40, 1078, 42,
+        //     0, 0, 900, 35);
+
+        ctx.beginPath(); ctx.moveTo(920, 0); ctx.lineTo(920, 696); ctx.stroke();
+
+        ctx.rotate(-Math.PI / 2)
+        ctx.drawImage(image,   // Barcode
+            246, 1036+40, 696, 250,
+            0, 960, -696, 250);
+        ctx.rotate(Math.PI / 2)
+    }
+};
+
+const dhlNL54 = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 0
+    },
+    width: 1217,    // 103mm (=> 110mm)
+    crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,   // Header & From
+            55, 95, 1078, 211+32,
+            0, 0, 900, 203);
+
+        ctx.drawImage(image,   // To
+            55, 367+32, 1078, 325,
+            0, 230, 900, 271);
+
+        ctx.drawImage(image,   // Shipment Info
+            55, 753+32, 1078, 202,
+            0, 527, 900, 169);
+
+        // ctx.drawImage(image,   // Label Version
+        //     55, 1304+32, 1078, 42,
+        //     0, 0, 900, 35);
+
+        ctx.beginPath(); ctx.moveTo(920, 0); ctx.lineTo(920, 696); ctx.stroke();
+
+        ctx.rotate(-Math.PI / 2)
+        ctx.drawImage(image,   // Barcode
+            246, 1036+32, 696, 250,
+            0, 960, -696, 250);
+        ctx.rotate(Math.PI / 2)
+    }
+};
+
+const dhlNL55 = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 0
+    },
+    width: 1217,    // 103mm (=> 110mm)
+    crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,   // Header & From
+            55, 95, 1078, 211+32,
+            0, 0, 900, 203);
+
+        ctx.drawImage(image,   // To
+            55, 367+32, 1078, 365,
+            0, 210, 900, 305);
+
+        ctx.drawImage(image,   // Shipment Info
+            55, 753+40+32, 1078, 202,
+            0, 527, 900, 169);
+
+        // ctx.drawImage(image,   // Label Version
+        //     55, 1304+40+32, 1078, 42,
+        //     0, 0, 900, 35);
+
+        ctx.beginPath(); ctx.moveTo(920, 0); ctx.lineTo(920, 696); ctx.stroke();
+
+        ctx.rotate(-Math.PI / 2)
+        ctx.drawImage(image,   // Barcode
+            246, 1036+40+32, 696, 250,
             0, 960, -696, 250);
         ctx.rotate(Math.PI / 2)
     }
