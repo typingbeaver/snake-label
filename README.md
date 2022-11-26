@@ -1,8 +1,14 @@
 # [![`snake_label`](/img/snake_label_header.webp)](https://snake-label.de)
 Converts large format shipping labels to 62mm `snake_labels` for label printers e. g. Brother QL printers. - And this without sending your labels to a server, instead your browser will do all the work!
 
-If you want to use `snake_label` offline, download the latest distribution files and open `index.html` in your favorite browser: \
- **[[ Download snake_label ]](https://github.com/typingbeaver/snake-label/archive/refs/heads/dist.zip)**
+> **Note**  
+> Feel free to use the hosted online version: **[[ snake-label.de ]](https://snake-label.de)**
+> 
+> If you want to use `snake_label` offline instead, download the latest distribution files and open `index.html` in your favorite browser:
+> **[[ Download snake_label ]](https://github.com/typingbeaver/snake-label/archive/refs/heads/dist.zip)**
+
+> **Warning**  
+> Use this tool at your own risk. These are non-official labels which could get declined by the operator.
 
 ## Features and benefits
 - **smaller and handier**: sticky labels instead of giant plain paper pages
