@@ -6,7 +6,7 @@ import 'pdfjs-dist/build/pdf.worker.entry';
 import { saveAs } from 'file-saver';
 
 const debug = false;
-debug && readFile();
+// debug && readFile();
 console.log('Application loaded. debug =', debug);
 
 const viewImg = document.getElementById('view');

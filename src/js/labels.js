@@ -104,9 +104,9 @@ const dhlPrivatInternational = {
             -395, 645, -20, 194);
         ctx.rotate(Math.PI / 2);
 
-        ctx.drawImage(image,   // Telefonnummer
-            2770, 740, 300, 35,
-            590, 520, 300, 35);
+        ctx.drawImage(image,   // Telefonnummer & E-Mail
+            2768, 743, 300, 60,
+            590, 495, 300, 60);
 
         ctx.drawImage(image,   // Sendungsdaten
             1964, 933, 1124, 152,
@@ -183,9 +183,9 @@ const dhlPrivatInternationalNative = {
             -395, 645, -20, 194);
         ctx.rotate(Math.PI / 2);
 
-        ctx.drawImage(image,   // Telefonnummer
-            2770, 740, 300, 35,
-            590, 520, 300, 35);
+        ctx.drawImage(image,   // Telefonnummer & E-Mail
+            2768, 743, 300, 60,
+            590, 495, 300, 60);
 
         ctx.drawImage(image,   // Sendungsdaten
             1964, 933, 1124, 152,
