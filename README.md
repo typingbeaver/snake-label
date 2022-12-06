@@ -96,6 +96,12 @@ International returns are most probably better on a real paper sheet/A5 Label.
 <!-- ![Sample Image]() -->
 <!-- [Sample PDF]() -->
 
+#### `nike_retoure [dhl]`
+- **Size:** 62x160mm
+
+<!-- ![Sample Image]() -->
+<!-- [Sample PDF]() -->
+
 ### DHL Netherlands / DHL Nederland [mdp v5.7]
 
 #### `dhl_nl_4_4`

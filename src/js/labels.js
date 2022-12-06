@@ -10,6 +10,7 @@ export default function (labelType) {
         case 'hermes-privat-v102': return hermesPrivatV102;
         case 'adidas': return adidasRetoure;
         case 'mediamarkt-saturn': return mediamarktSaturnRetoure;
+        case 'nike-dhl': return nikeRetoureDhl;
         case 'dhl-nl-4-4': return dhlNL44;
         case 'dhl-nl-4-5': return dhlNL45;
         case 'dhl-nl-5-4': return dhlNL54;
@@ -459,6 +460,39 @@ const mediamarktSaturnRetoure = {
         ctx.drawImage(image,   // Identcode/Sendungsnummer
             2362, 1685, barcodeSizeX, barcodeSizeY,
             965, 450, barcodeSizeX, barcodeSizeY);
+    }
+};
+
+const nikeRetoureDhl = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 0
+    },
+    width: 1819,    // 154mm (=> 160mm)
+    crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,   // Adresse
+            264, 386, 1110, 784,
+            0, 0, 985, 696);
+
+        ctx.beginPath(); ctx.moveTo(1000, 0); ctx.lineTo(1000, outputCanvas.height); ctx.stroke();
+
+        let barcodeSizeX = 600,
+            barcodeSizeY = 240;
+        ctx.drawImage(image,   // Barcode Returennummer
+            272, 1894, barcodeSizeX, 120,
+            1020, 0, barcodeSizeX, 120);
+
+        ctx.drawImage(image,   // Leitcode/Routingcode
+            272, 1264, barcodeSizeX, barcodeSizeY,
+            1020, 180, barcodeSizeX, barcodeSizeY);
+        ctx.drawImage(image,   // Identcode/Sendungsnummer
+            272, 1604, barcodeSizeX, barcodeSizeY,
+            1020, 450, barcodeSizeX, barcodeSizeY);
+
+        ctx.drawImage(image,   // Cycleon Code
+            1222, 1350, 155, 575,
+            1660, 0, 155, 575);
     }
 };
 
