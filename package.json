@@ -7,6 +7,7 @@
     "dev": "vite",
     "host": "vite --host",
     "build": "vite build",
+    "build-singlefile": "vite build --config vite.config.singlefile.js",
     "preview": "vite preview"
   },
   "repository": {
@@ -32,6 +33,7 @@
     "autoprefixer": "^10.4.12",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8",
-    "vite": "^3.1.0"
+    "vite": "^3.1.0",
+    "vite-plugin-singlefile": "^0.13.2"
   }
 }
