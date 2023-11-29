@@ -1,6 +1,6 @@
 {
   "name": "snake-label",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Converts large format shipping labels to 62mm `snake_labels` for label printers.",
   "browser": "index.html",
   "scripts": {
