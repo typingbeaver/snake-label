@@ -20,7 +20,7 @@ downloadLabelIMG.addEventListener('click', savePNG, false);
 function savePNG() {
     saveAs(
         new Blob([labelArrayBuffer], { type: 'image/png' }),
-        document.getElementById('file-input').files[0].name.replace('.pdf', '') + '-Label.png'
+        document.getElementById('file-input').files[0].name.replace(/(.pdf|.gif)/g,'') + '-Label.png'
     );
 }
 
@@ -28,7 +28,7 @@ async function saveLabel() {
     const pdfBytes = await generatePDF();
     saveAs(
         new Blob([pdfBytes], { type: 'application/pdf' }),
-        document.getElementById('file-input').files[0].name.replace('.pdf', '') + '-Label.pdf'
+        document.getElementById('file-input').files[0].name.replace(/(.pdf|.gif)/g,'') + '-Label.pdf'
     );
 }
 
@@ -61,34 +61,52 @@ function readFile() {
 
     const reader = new FileReader();
     console.log('Reading file.');
-    reader.readAsArrayBuffer(document.getElementById('file-input').files[0]);
+    switch(label.file.type) {
+        case 'pdf':
+            reader.readAsArrayBuffer(document.getElementById('file-input').files[0]);
+            break;
+        case 'gif':
+            reader.readAsDataURL(document.getElementById('file-input').files[0]);
+            break;
+    }
 
     reader.onload = async (e) => {
-        // read PDF
-        const pdf = await getDocument(reader.result).promise;
-        console.log('PDF loaded.', pdf);
+        var labelData = {
+            image: new Image(),
+        };
 
-        // get page
-        const page = await pdf.getPage(label.file.page);
+        switch(label.file.type) {
+            case 'pdf':
+             // read PDF
+            labelData.pdf = await getDocument(reader.result).promise;
+            console.log('PDF loaded.', labelData.pdf);
 
-        // render page on canvas
-        const canvas = document.createElement('canvas'),
-            viewport = page.getViewport({
-                scale: label.scale || 4,
-                rotation: label.file.rotation
-            });
-        canvas.width = viewport.width;
-        canvas.height = viewport.height;
-        await page.render({
-            canvasContext: canvas.getContext('2d'),
-            viewport: viewport
-        }).promise;
+            // get page
+            labelData.page = await labelData.pdf.getPage(label.file.page);
 
-        // convert canvas to image
-        const image = new Image();
-        const p = new Promise(r => image.onload = r);
-        image.src = canvas.toDataURL();
-        await p;
+            // render page on canvas
+            labelData.canvas = document.createElement('canvas');
+            const viewport = labelData.page.getViewport({
+                    scale: label.scale || 4,
+                    rotation: label.file.rotation
+                });
+            labelData.canvas.width = viewport.width;
+            labelData.canvas.height = viewport.height;
+            await labelData.page.render({
+                canvasContext: labelData.canvas.getContext('2d'),
+                viewport: viewport
+            }).promise;
+
+            // convert canvas to image
+            const p = new Promise(r => labelData.image.onload = r);
+            labelData.image.src = labelData.canvas.toDataURL();
+            await p;
+            break;
+
+            case 'gif':
+                labelData.image.src = reader.result;
+            break;
+        }
 
         await new Promise(r => setTimeout(r, 1e2)); // small delay helps
 
@@ -112,7 +130,7 @@ function readFile() {
         ctx.lineWidth = 2;
 
         // crop label
-        label.crop(outputCanvas, ctx, image);
+        label.crop(outputCanvas, ctx, labelData.image);
         console.log('Label cropped.');
 
         // show label
