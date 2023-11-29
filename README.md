@@ -90,6 +90,14 @@ International returns are most probably better on a real paper sheet/A5 Label.
 <!-- ![Sample Image]() -->
 <!-- [Sample PDF]() -->
 
+
+#### `amazon_retoure [dhl]`
+- **Size:** 62x120mm
+- **Note:** *Converts displayed GIF Image. No PDF support!*
+
+<!-- ![Sample Image]() -->
+<!-- [Sample PDF]() -->
+
 #### `mediamarkt_saturn_retoure [dhl]`
 - **Size:** 62x145mm
 
