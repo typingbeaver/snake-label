@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png" />
@@ -17,10 +16,10 @@
 
     
     
-  <script type="module" crossorigin src="/assets/index.b2b22e39.js"></script>
+  <script type="module" crossorigin src="/assets/index.52fba871.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/vendor.b3b4cbce.js">
   <link rel="modulepreload" crossorigin href="/assets/vendor.pdfjs.df470f9c.js">
-  <link rel="stylesheet" href="/assets/index.38942b1d.css">
+  <link rel="stylesheet" href="/assets/index.27965a50.css">
 </head>
 
 <body class="h-full">
@@ -105,6 +104,11 @@
                                             nike_retoure [dhl] | 62x160mm
                                         </option>
                                     </optgroup>
+                                    <optgroup label="dpd">
+                                        <option value="dpd-packlink">
+                                            dpd_packlink | 62x180mm
+                                        </option>
+                                    </optgroup>
                                      <optgroup label="dhl_netherlands">
                                         <option value="dhl-nl-4-4">
                                             dhl_nl_4_4 [mdp v5.7] | 62x110mm
@@ -180,6 +184,10 @@
                     <button id="downloadLabelIMG"
                         class="bg-amber-400 px-4 py-2 text-sm font-medium text-gray-900 shadow-sm hover:font-bold focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
                         Save as PNG Image
+                    </button>
+                    <button id="downloadPageIMG" hidden
+                        class="border-amber-400 border-4 text-amber-400 px-4 py-2 text-sm font-medium shadow-sm hover:font-bold focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
+                        Save uncropped PNG Image
                     </button>
                 </div>
             </div>
