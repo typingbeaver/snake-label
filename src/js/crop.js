@@ -6,22 +6,35 @@ import 'pdfjs-dist/build/pdf.worker.entry';
 import { saveAs } from 'file-saver';
 
 const debug = false;
-// debug && readFile();
+debug && (downloadPageIMG.hidden = false);
 console.log('Application loaded. debug =', debug);
 
 const viewImg = document.getElementById('view');
 let label,
     labelArrayBuffer;
+var labelData = {
+    image: new Image(),
+};
 
 convertLabel.addEventListener('click', readFile, false);
 downloadLabel.addEventListener('click', saveLabel, false);
 downloadLabelIMG.addEventListener('click', savePNG, false);
+downloadPageIMG.addEventListener('click', savePagePNG, false);
 
 function savePNG() {
     saveAs(
         new Blob([labelArrayBuffer], { type: 'image/png' }),
         document.getElementById('file-input').files[0].name.replace(/(.pdf|.gif)/g,'') + '-Label.png'
     );
+}
+
+function savePagePNG() {
+    labelData.canvas.toBlob((blob) => {
+        saveAs(
+            blob,
+            document.getElementById('file-input').files[0].name.replace(/(.pdf|.gif)/g,'') + '.png'
+        );
+    });
 }
 
 async function saveLabel() {
@@ -71,10 +84,6 @@ function readFile() {
     }
 
     reader.onload = async (e) => {
-        var labelData = {
-            image: new Image(),
-        };
-
         switch(label.file.type) {
             case 'pdf':
              // read PDF
