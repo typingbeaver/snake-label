@@ -110,6 +110,14 @@ International returns are most probably better on a real paper sheet/A5 Label.
 <!-- ![Sample Image]() -->
 <!-- [Sample PDF]() -->
 
+### DPD
+
+#### `dpd_packlink`
+- **Size:** 62x180mm
+
+<!-- ![Sample Image]() -->
+<!-- [Sample PDF]() -->
+
 ### DHL Netherlands / DHL Nederland [mdp v5.7]
 
 #### `dhl_nl_4_4`

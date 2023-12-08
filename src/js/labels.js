@@ -12,6 +12,7 @@ export default function (labelType) {
         case 'amazon-dhl': return amazonRetoureDhl;
         case 'mediamarkt-saturn': return mediamarktSaturnRetoure;
         case 'nike-dhl': return nikeRetoureDhl;
+        case 'dpd-packlink': return dpdPacklink;
         case 'dhl-nl-4-4': return dhlNL44;
         case 'dhl-nl-4-5': return dhlNL45;
         case 'dhl-nl-5-4': return dhlNL54;
@@ -528,6 +529,30 @@ const nikeRetoureDhl = {
             1660, 0, 155, 575);
     }
 };
+
+const dpdPacklink = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 0
+    },
+    width: 2043,    // 173mm (=> 180mm)
+    crop(outputCanvas, ctx, image) {
+        ctx.lineWidth = 4;
+
+        ctx.beginPath(); ctx.moveTo(2, 58); ctx.lineTo(2, outputCanvas.height); ctx.stroke();
+
+        ctx.drawImage(image,   // Adresse
+            57, 78, 1112, 882,
+            4, 0, 878, 696);
+
+        ctx.beginPath(); ctx.moveTo(883, 58); ctx.lineTo(883, outputCanvas.height); ctx.stroke();
+
+        ctx.drawImage(image,   // Barcode
+            57, 962, 1112, 696,
+            926, 0, 1112, 696);
+    }
+}
 
 const dhlNL44 = {
     file: {
