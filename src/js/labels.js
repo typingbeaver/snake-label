@@ -13,6 +13,7 @@ export default function (labelType) {
         case 'mediamarkt-saturn': return mediamarktSaturnRetoure;
         case 'nike-dhl': return nikeRetoureDhl;
         case 'dpd-packlink': return dpdPacklink;
+        case 'gls-return': return glsReturn;
         case 'dhl-nl-4-4': return dhlNL44;
         case 'dhl-nl-4-5': return dhlNL45;
         case 'dhl-nl-5-4': return dhlNL54;
@@ -551,6 +552,28 @@ const dpdPacklink = {
         ctx.drawImage(image,   // Barcode
             57, 962, 1112, 696,
             926, 0, 1112, 696);
+    }
+}
+
+const glsReturn = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 90
+    },
+    width: 1642,    // 139mm (=> 145mm)
+    crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,   // Barcode
+            2303, 320, 690, 720,
+            0, 0, 667, 696);
+
+        ctx.drawImage(image,   // Adresse
+            2107, 1155, 1109, 813,
+            690, 0, 949, 696);
+
+        ctx.drawImage(image,   // GLS Logo
+            3035, 2079, 182, 63,
+            1280, 8, 182, 63);
     }
 }
 
