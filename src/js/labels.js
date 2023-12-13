@@ -10,6 +10,7 @@ export default function (labelType) {
         case 'hermes-privat-v102': return hermesPrivatV102;
         case 'adidas': return adidasRetoure;
         case 'amazon-dhl': return amazonRetoureDhl;
+        case 'hm-retoure-dhl': return hmRetoureDhl;
         case 'mediamarkt-saturn': return mediamarktSaturnRetoure;
         case 'nike-dhl': return nikeRetoureDhl;
         case 'dpd-packlink': return dpdPacklink;
@@ -450,6 +451,38 @@ const amazonRetoureDhl = {
         ctx.drawImage(image,   // Identcode/Sendungsnummer
             1540, 290, barcodeSizeX, barcodeSizeY,
             465, -660, barcodeSizeX, -barcodeSizeY);
+    }
+};
+
+const hmRetoureDhl = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 0
+    },
+    width: 1642,    // 139mm (=> 145mm)
+    crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,   // Adresse
+            0, 44, 1145, 696,
+            0, 0, 985, 599);
+        ctx.drawImage(image,   // H&M-Logo
+            814, 1619, 300, 86,
+            680, 610, 300, 86);
+
+        ctx.beginPath(); ctx.moveTo(1000, 0); ctx.lineTo(1000, outputCanvas.height); ctx.stroke();
+
+        let barcodeSizeX = 600,
+            barcodeSizeY = 240;
+        ctx.drawImage(image,   // Barcode Returennummer
+            266, 784, barcodeSizeX, 120,
+            1040, 0, barcodeSizeX, 120);
+
+        ctx.drawImage(image,   // Leitcode/Routingcode
+            266, 1015, barcodeSizeX, barcodeSizeY,
+            1040, 180, barcodeSizeX, barcodeSizeY);
+        ctx.drawImage(image,   // Identcode/Sendungsnummer
+            266, 1377, barcodeSizeX, barcodeSizeY,
+            1040, 450, barcodeSizeX, barcodeSizeY);
     }
 };
 
