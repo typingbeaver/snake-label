@@ -4,6 +4,7 @@ export default function (labelType) {
         case 'dhl-privat-international': return dhlPrivatInternational;
         case 'dhl-privat-international-native': return dhlPrivatInternationalNative;
         case 'dhl-retoure': return dhlRetoure;
+        case 'dhl-return-connect': return dhlReturnConnect;
         case 'dp-briefmarke': return dpBriefmarke;
         case 'dp-briefmarke-short': return dpBriefmarkeShort
         case 'dp-briefmarke-adresse': return dpBriefmarkeAdresse;
@@ -256,6 +257,32 @@ const dhlRetoure = {
         ctx.drawImage(image,   // Identcode/Sendungsnummer
             2030, 1810, barcodeSizeX, barcodeSizeY,
             686, 445, barcodeSizeX, barcodeSizeY);
+    }
+};
+
+const dhlReturnConnect = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 0
+    },
+    width: 1819,    // 154mm (=> 160mm)
+    crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,   // Adresse
+            34, 16, 1065, 823,
+            0, 0, 900, 696);
+
+        ctx.beginPath(); ctx.moveTo(910, 0); ctx.lineTo(910, outputCanvas.height); ctx.stroke();
+
+        let barcodeSizeX = 875,
+            barcodeSizeY = 300;
+
+        ctx.drawImage(image,   // Leitcode/Routingcode
+            129, 1065, barcodeSizeX, barcodeSizeY,
+            944, 20, barcodeSizeX, barcodeSizeY);
+        ctx.drawImage(image,   // Identcode/Sendungsnummer
+            129, 1382, barcodeSizeX, barcodeSizeY,
+            944, 360, barcodeSizeX, barcodeSizeY);
     }
 };
 

@@ -53,6 +53,12 @@ International returns are most probably better on a real paper sheet/A5 Label.
 ![Sample Image](/samples/dhl/dhl_retoure.png)
 <!-- [Sample PDF]() -->
 
+#### `dhl_return_connect`
+- **Size:** 62x160mm
+
+<!-- ![Sample Image]() -->
+<!-- [Sample PDF]() -->
+
 ### Deutsche Post
 
 #### `briefmarke`
