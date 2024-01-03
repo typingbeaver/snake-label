@@ -104,6 +104,12 @@ International returns are most probably better on a real paper sheet/A5 Label.
 <!-- ![Sample Image]() -->
 <!-- [Sample PDF]() -->
 
+#### `bestsecret_retoure [dhl]`
+- **Size:** 62x150mm
+
+<!-- ![Sample Image]() -->
+<!-- [Sample PDF]() -->
+
 #### `hm_retoure [dhl]`
 - **Size:** 62x145mm
 

@@ -11,6 +11,7 @@ export default function (labelType) {
         case 'hermes-privat-v102': return hermesPrivatV102;
         case 'adidas': return adidasRetoure;
         case 'amazon-dhl': return amazonRetoureDhl;
+        case 'bestsecret-retoure-dhl': return bestsecretRetoureDhl;
         case 'hm-retoure-dhl': return hmRetoureDhl;
         case 'mediamarkt-saturn': return mediamarktSaturnRetoure;
         case 'nike-dhl': return nikeRetoureDhl;
@@ -478,6 +479,32 @@ const amazonRetoureDhl = {
         ctx.drawImage(image,   // Identcode/Sendungsnummer
             1540, 290, barcodeSizeX, barcodeSizeY,
             465, -660, barcodeSizeX, -barcodeSizeY);
+    }
+};
+
+const bestsecretRetoureDhl = {
+    file: {
+        type: 'pdf',
+        page: 3,
+        rotation: 90
+    },
+    width: 1701,    // 144mm (=> 150mm)
+    crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,   // Adresse
+            372, 366, 1134, 814,
+            0, 0, 970, 696);
+
+        ctx.beginPath(); ctx.moveTo(980, 0); ctx.lineTo(980, outputCanvas.height); ctx.stroke();
+
+        let barcodeSizeX = 670,
+            barcodeSizeY = 320;
+
+        ctx.drawImage(image,   // Leitcode/Routingcode
+            604, 1236, barcodeSizeX, barcodeSizeY,
+            1020, 0, barcodeSizeX, barcodeSizeY);
+        ctx.drawImage(image,   // Identcode/Sendungsnummer
+            604, 1632, barcodeSizeX, barcodeSizeY,
+            1020, 370, barcodeSizeX, barcodeSizeY);
     }
 };
 
