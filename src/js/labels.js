@@ -16,6 +16,7 @@ export default function (labelType) {
         case 'mediamarkt-saturn': return mediamarktSaturnRetoure;
         case 'nike-dhl': return nikeRetoureDhl;
         case 'dpd-packlink': return dpdPacklink;
+        case 'dpd-return': return dpdReturn;
         case 'gls-return': return glsReturn;
         case 'dhl-nl-4-4': return dhlNL44;
         case 'dhl-nl-4-5': return dhlNL45;
@@ -639,6 +640,30 @@ const dpdPacklink = {
         ctx.drawImage(image,   // Barcode
             57, 962, 1112, 696,
             926, 0, 1112, 696);
+    }
+}
+
+const dpdReturn = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 0
+    },
+    width: 2043,    // 173mm (=> 180mm)
+    crop(outputCanvas, ctx, image) {
+
+        ctx.drawImage(image,   // Adresse
+            53, 125, 1080, 834,
+            0, 0, 901, 696);
+
+        ctx.beginPath(); ctx.moveTo(910, 0); ctx.lineTo(910, outputCanvas.height); ctx.stroke();
+
+        ctx.drawImage(image,   // DPD Header
+            40, 56, 1106, 64,
+            930, 0, 1106, 64);
+        ctx.drawImage(image,   // Barcode
+            40, 957, 1106, 626,
+            930, 70, 1106, 626);
     }
 }
 

@@ -136,6 +136,12 @@ International returns are most probably better on a real paper sheet/A5 Label.
 <!-- ![Sample Image]() -->
 <!-- [Sample PDF]() -->
 
+#### `dpd_return`
+- **Size:** 62x180mm
+
+<!-- ![Sample Image]() -->
+<!-- [Sample PDF]() -->
+
 ### GLS
 
 #### `gls_return`
