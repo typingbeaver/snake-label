@@ -9,6 +9,7 @@ export default function (labelType) {
         case 'dp-briefmarke-short': return dpBriefmarkeShort
         case 'dp-briefmarke-adresse': return dpBriefmarkeAdresse;
         case 'hermes-privat-v102': return hermesPrivatV102;
+        case 'hermes-vinted-qr': return hermesVintedQR;
         case 'adidas': return adidasRetoure;
         case 'amazon-dhl': return amazonRetoureDhl;
         case 'bestsecret-retoure-dhl': return bestsecretRetoureDhl;
@@ -397,6 +398,26 @@ const hermesPrivatV102 = {
         ctx.beginPath(); ctx.moveTo(0, outputCanvas.height - 2); ctx.lineTo(this.width, outputCanvas.height - 2); ctx.stroke();
         ctx.beginPath(); ctx.moveTo(2, 4); ctx.lineTo(2, outputCanvas.height - 4); ctx.stroke();
         ctx.beginPath(); ctx.moveTo(this.width - 2, 4); ctx.lineTo(this.width - 2, outputCanvas.height - 4); ctx.stroke();
+    }
+};
+
+const vintedHermesQR = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 0
+    },
+    width: 1500,    // ca. 135mm
+    crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,   // Hermes Logo und Empfängername
+            150, 340, 1065, 823, 
+            0, 0, 850, 696);
+
+        ctx.beginPath(); ctx.moveTo(690, 0); ctx.lineTo(690, outputCanvas.height); ctx.stroke();
+
+        ctx.drawImage(image,   // QR-Code
+            1350, 390, 1065, 1000,
+            700, 0, 1065, 1000);
     }
 };
 
