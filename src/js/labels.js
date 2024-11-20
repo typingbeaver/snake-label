@@ -401,7 +401,7 @@ const hermesPrivatV102 = {
     }
 };
 
-const vintedHermesQR = {
+const hermesVintedQR = {
     file: {
         type: 'pdf',
         page: 1,
