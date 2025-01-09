@@ -405,19 +405,23 @@ const hermesVintedQR = {
     file: {
         type: 'pdf',
         page: 1,
-        rotation: 0
+        rotation: 270
     },
-    width: 1500,    // ca. 135mm
+    width:  1110,    // 94mm  (=> 100mm)
     crop(outputCanvas, ctx, image) {
-        ctx.drawImage(image,   // Hermes Logo und Empfängername
-            150, 340, 1065, 823, 
-            0, 0, 850, 696);
+        ctx.drawImage(image,   // Vinted Logo
+            154, 150, 120, 696,
+            0, 0, 120, 696);
 
-        ctx.beginPath(); ctx.moveTo(690, 0); ctx.lineTo(690, outputCanvas.height); ctx.stroke();
+        ctx.drawImage(image,   // Hermes Logo und Empfängername
+            422, 1375, 360, 820,
+            130, 0, 306, 696);
+
+        // ctx.beginPath(); ctx.moveTo(690, 0); ctx.lineTo(690, outputCanvas.height); ctx.stroke();
 
         ctx.drawImage(image,   // QR-Code
-            1350, 390, 1065, 1000,
-            700, 0, 1065, 1000);
+            440, 226, 632, 632,
+            470, 32, 632, 632);
     }
 };
 

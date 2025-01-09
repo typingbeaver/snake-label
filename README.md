@@ -88,7 +88,7 @@ International returns are most probably better on a real paper sheet/A5 Label.
 ![Sample Image](/samples/hermes/hermes_privat.png)
 
 #### `hermes_vinted_qr`
-- **Size:** 62x135mm
+- **Size:** 62x100mm
 
 ![Sample Image](/samples/hermes/hermes_vinted_qr.png)
 <!-- [Sample PDF]() -->
