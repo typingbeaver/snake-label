@@ -14,6 +14,7 @@ export default function (labelType) {
         case 'amazon-dhl': return amazonRetoureDhl;
         case 'bestsecret-retoure-dhl': return bestsecretRetoureDhl;
         case 'hm-retoure-dhl': return hmRetoureDhl;
+        case 'ikea-retoure': return ikeaRetoure;
         case 'mediamarkt-saturn': return mediamarktSaturnRetoure;
         case 'nike-dhl': return nikeRetoureDhl;
         case 'dpd-packlink': return dpdPacklink;
@@ -563,6 +564,38 @@ const hmRetoureDhl = {
         ctx.drawImage(image,   // Identcode/Sendungsnummer
             266, 1377, barcodeSizeX, barcodeSizeY,
             1040, 450, barcodeSizeX, barcodeSizeY);
+    }
+};
+
+const ikeaRetoure = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 90
+    },
+    width: 1524,    // 129mm (=> 135mm)
+    crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,   // Kopf & Adresse
+            135, 142, 1040, 807,
+            0, 0, 897, 696);
+
+        // ctx.beginPath(); ctx.moveTo(910, 0); ctx.lineTo(910, 696); ctx.stroke();
+
+        ctx.drawImage(image,   // Sendungsdaten
+            135, 1015, 866, 160,
+            920, 0, 600, 110);
+
+        ctx.beginPath(); ctx.moveTo(920, 120); ctx.lineTo(1520, 120); ctx.stroke();
+
+        let barcodeSizeX = 600,
+            barcodeSizeY = 250;
+
+        ctx.drawImage(image,   // Leitcode/Routingcode
+            326, 1350, barcodeSizeX, barcodeSizeY,
+            920, 160, barcodeSizeX, barcodeSizeY);
+        ctx.drawImage(image,   // Identcode/Sendungsnummer
+            326, 1770, barcodeSizeX, barcodeSizeY,
+            920, 440, barcodeSizeX, barcodeSizeY);
     }
 };
 
