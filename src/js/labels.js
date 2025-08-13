@@ -415,16 +415,16 @@ const hermesPrivatV111 = {
             260, 180, 915, 44,
             0, 0, 915, 44);
 
-        ctx.drawImage(image,    // Sendungs-ID
-            1100, 315, 350, 85,
-            0, 70, 350, 85);
+        ctx.drawImage(image,    // Logo
+            1628, 155, 472, 66,
+            5, 70, 350, 49);
 
         ctx.drawImage(image,    // Gewichtswarnung
             874, 320, 124, 160,
-            5, 190, 124, 160);
+            5, 160, 124, 160);
         ctx.drawImage(image,    // Zusatz EU
             1888, 449, 200, 120,
-            150, 190, 200, 120);
+            150, 160, 200, 120);
 
         // ctx.beginPath(); ctx.moveTo(370, 70); ctx.lineTo(370, 330); ctx.stroke();
 
@@ -439,9 +439,9 @@ const hermesPrivatV111 = {
             1100, 1212, 520, 30,
             400, 650, 520, 30);
 
-        ctx.drawImage(image,    // Logo
-            1628, 155, 472, 66,
-            5, 635, 320, 45);
+        ctx.drawImage(image,    // Sendungs-ID
+            1100, 315, 350, 85,
+            5, 600, 350, 85);
 
         ctx.beginPath(); ctx.moveTo(950, 0); ctx.lineTo(950, outputCanvas.height); ctx.stroke();
 
