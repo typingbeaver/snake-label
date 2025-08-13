@@ -2,7 +2,7 @@ import getLabel from './labels'
 
 import { PDFDocument } from 'pdf-lib';
 import { getDocument } from 'pdfjs-dist';
-import 'pdfjs-dist/build/pdf.worker.entry';
+import 'pdfjs-dist/build/pdf.worker.mjs';
 import { saveAs } from 'file-saver';
 
 const debug = false;
