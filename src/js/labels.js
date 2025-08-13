@@ -9,6 +9,7 @@ export default function (labelType) {
         case 'dp-briefmarke-short': return dpBriefmarkeShort
         case 'dp-briefmarke-adresse': return dpBriefmarkeAdresse;
         case 'hermes-privat-v102': return hermesPrivatV102;
+        case 'hermes-privat-v111': return hermesPrivatV111;
         case 'hermes-vinted-qr': return hermesVintedQR;
         case 'adidas': return adidasRetoure;
         case 'amazon-dhl': return amazonRetoureDhl;
@@ -399,6 +400,60 @@ const hermesPrivatV102 = {
         ctx.beginPath(); ctx.moveTo(0, outputCanvas.height - 2); ctx.lineTo(this.width, outputCanvas.height - 2); ctx.stroke();
         ctx.beginPath(); ctx.moveTo(2, 4); ctx.lineTo(2, outputCanvas.height - 4); ctx.stroke();
         ctx.beginPath(); ctx.moveTo(this.width - 2, 4); ctx.lineTo(this.width - 2, outputCanvas.height - 4); ctx.stroke();
+    }
+};
+
+const hermesPrivatV111 = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 0
+    },
+    width: 1642,    // 139mm (=> 145mm)
+    crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,    // Titel
+            260, 180, 915, 44,
+            0, 0, 915, 44);
+
+        ctx.drawImage(image,    // Sendungs-ID
+            1100, 315, 350, 85,
+            0, 70, 350, 85);
+
+        ctx.drawImage(image,    // Gewichtswarnung
+            874, 320, 124, 160,
+            5, 190, 124, 160);
+        ctx.drawImage(image,    // Zusatz EU
+            1888, 449, 200, 120,
+            150, 190, 200, 120);
+
+        // ctx.beginPath(); ctx.moveTo(370, 70); ctx.lineTo(370, 330); ctx.stroke();
+
+        ctx.drawImage(image,    // Absender
+            1100, 460, 520, 260,
+            400, 70, 520, 260);
+
+        ctx.drawImage(image,    // Empfänger
+            780, 825, 840, 260,
+            (400-320), 350, 840, 260);
+        ctx.drawImage(image,    // Empfänger Land
+            1100, 1212, 520, 30,
+            400, 650, 520, 30);
+
+        ctx.drawImage(image,    // Logo
+            1628, 155, 472, 66,
+            5, 635, 320, 45);
+
+        ctx.beginPath(); ctx.moveTo(950, 0); ctx.lineTo(950, outputCanvas.height); ctx.stroke();
+
+        ctx.drawImage(image,    // Zahlungscode
+            250, 1120, 755, 360,
+            1000, 20, 640, 305);
+
+        ctx.rotate(Math.PI / 2)
+        ctx.drawImage(image,    // Sendungsnummer
+            306, 356, 300, 640,
+            380, -990, 300, -640);
+        ctx.rotate(-Math.PI / 2)
     }
 };
 
