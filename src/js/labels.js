@@ -81,6 +81,13 @@ const dhlPrivat = {
             2802, 679, 234, 154,
             666, 465, 152, 100);
 
+        // We didnt render any bahntransport label yet, lets try the second common position
+        if (isCanvasEmpty(ctx, 666, 465, 152, 100)) {
+            ctx.drawImage(image,   // Bahntransport v2
+                2763, 540, 250, 154,
+                666, 465, 152, 100);
+        }
+
         ctx.drawImage(image,   // Sendungsdaten
             1964, 933, 1124, 152,
             0, 576, 890, 120);
