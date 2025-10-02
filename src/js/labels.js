@@ -29,6 +29,16 @@ export default function (labelType) {
     };
 }
 
+function isCanvasEmpty(ctx, x, y, width, height) {
+    const imgData = ctx.getImageData(x, y, width, height);
+    for (let i = 0; i < imgData.data.length; i += 4) {
+        if (imgData.data[i]!=0xFF || imgData.data[i+1]!=0xFF || imgData.data[i+2]!=0xFF) {
+            return false; // Found a non-transparent pixel
+        }
+    }
+    return true; // All pixels are transparent
+}
+
 const template = {
     file: {
         type: 'pdf',
