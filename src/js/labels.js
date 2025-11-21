@@ -8,6 +8,9 @@ export default function (labelType) {
         case 'dp-briefmarke': return dpBriefmarke;
         case 'dp-briefmarke-short': return dpBriefmarkeShort
         case 'dp-briefmarke-adresse': return dpBriefmarkeAdresse;
+        case 'dp-briefmarke-bogen':  return dpBriefmarkeBogen;
+        case 'dp-briefmarke-ebay':  return dpBriefmarkeEbay;
+        case 'dp-briefmarke-ebay-ohne-ebay-logo':  return dpBriefmarkeEbayOhneLogo;
         case 'hermes-privat-v102': return hermesPrivatV102;
         case 'hermes-privat-v111': return hermesPrivatV111;
         case 'hermes-vinted-qr': return hermesVintedQR;
@@ -335,6 +338,56 @@ const dpBriefmarkeAdresse = {
             0, 0, 874, 696);
     }
 };
+
+const dpBriefmarkeBogen = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 0
+    },
+    scale: 4.1666,
+    width: 402,    // 34mm (=> 40mm)
+    crop(outputCanvas, ctx, image) {
+        ctx.rotate(-Math.PI / 2)
+        ctx.drawImage(image,
+            45, 167, 765, 402,
+            -750, 0, 765, 402);
+        ctx.rotate(Math.PI / 2)
+    }
+};
+
+const dpBriefmarkeEbay = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 0
+    },
+    scale: 4.1666,
+    width: 900,
+    crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,
+            150, 240, 1350, 680, 0, 0, 1350, 680
+        );
+    }
+    
+};
+
+const dpBriefmarkeEbayOhneLogo = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 0
+    },
+    scale: 4.1666,
+    width: 820,
+    crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,
+            150, 240, 820, 680, 0, 0, 820, 680
+        );
+    }
+    
+};
+
 
 const hermesPrivatV102 = {
     file: {
