@@ -9,6 +9,7 @@ export default function (labelType) {
         case 'dp-briefmarke-short': return dpBriefmarkeShort
         case 'dp-briefmarke-adresse': return dpBriefmarkeAdresse;
         case 'dp-briefmarke-bogen':  return dpBriefmarkeBogen;
+        case 'dp-briefmarke-bogen-short':  return dpBriefmarkeBogenShort;
         case 'hermes-privat-v102': return hermesPrivatV102;
         case 'hermes-privat-v111': return hermesPrivatV111;
         case 'hermes-vinted-qr': return hermesVintedQR;
@@ -350,6 +351,23 @@ const dpBriefmarkeBogen = {
         ctx.drawImage(image,
             42, 154, 696, 374,
             0, -14, 696, -374);
+        ctx.rotate(-Math.PI / 2)
+    }
+};
+
+const dpBriefmarkeBogenShort = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 0
+    },
+    scale: 3.8,
+    width: 224,    // 19mm (=> 25mm)
+    crop(outputCanvas, ctx, image) {
+        ctx.rotate(Math.PI / 2)
+        ctx.drawImage(image,
+            42, 160, 696, 224,
+            0, 0, 696, -224);
         ctx.rotate(-Math.PI / 2)
     }
 };
