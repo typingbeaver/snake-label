@@ -80,6 +80,20 @@ International returns are most probably better on a real paper sheet/A5 Label.
 ![Sample Image](/samples/deutsche_post/briefmarke_adresse.png) \
 [Sample PDF](/samples/deutsche_post/briefmarke_adresse.pdf)
 
+#### `briefmarke_bogen`
+- **Size:** 62x40mm
+- **Note:** *Druckt (derzeit) nur die erste Marke eines 3-spaltigen DIN A4-Bogens!*
+
+![Sample Image](/samples/deutsche_post/briefmarke_bogen.png) \
+[Sample PDF](/samples/deutsche_post/briefmarke_bogen.pdf)
+
+#### `briefmarke_bogen_short`
+- **Size:** 62x25mm
+- **Note:** *Druckt (derzeit) nur die erste Marke eines **3-spaltigen** DIN A4-Bogens!*
+
+![Sample Image](/samples/deutsche_post/briefmarke_bogen_short.png) \
+[Sample PDF](/samples/deutsche_post/briefmarke_bogen_short.pdf)
+
 ### Hermes
 
 #### `hermes_privat [v1.1.2]`
