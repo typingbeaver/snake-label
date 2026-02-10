@@ -10,9 +10,9 @@ export default function (labelType) {
         case 'dp-briefmarke-adresse': return dpBriefmarkeAdresse;
         case 'dp-briefmarke-bogen':  return dpBriefmarkeBogen;
         case 'dp-briefmarke-bogen-short':  return dpBriefmarkeBogenShort;
-        case 'hermes-privat-v102': return hermesPrivatV102;
-        case 'hermes-privat-v111': return hermesPrivatV111;
+        case 'hermes-privat-v112': return hermesPrivatV112;
         case 'hermes-vinted-qr': return hermesVintedQR;
+        case 'hermes-vinted-eu': return hermesVintedEU;
         case 'adidas': return adidasRetoure;
         case 'amazon-dhl': return amazonRetoureDhl;
         case 'bestsecret-retoure-dhl': return bestsecretRetoureDhl;
@@ -372,74 +372,7 @@ const dpBriefmarkeBogenShort = {
     }
 };
 
-const hermesPrivatV102 = {
-    file: {
-        type: 'pdf',
-        page: 1,
-        rotation: 0
-    },
-    width: 1701,    // 144mm  (=> 150mm)
-    crop(outputCanvas, ctx, image) {
-        ctx.drawImage(image,    // Titel
-            185, 180, 915, 45,
-            20, 20, 915, 45);
-
-        ctx.drawImage(image,    // Zahlungscode
-            200, 1115, 770, 350,
-            20, 80, 770, 350);
-
-        ctx.drawImage(image,    // Logo
-            1625, 165, 485, 80,
-            40, 460, 364, 60);
-        ctx.drawImage(image,    // Sendungs-ID
-            1100, 280, 350, 95,
-            130, 540, 313, 85);
-        // ctx.drawImage(image,    // 'WE DO!' Logo
-        //     1889, 479, 206, 310,
-        //     415, 460, 103, 155);
-
-        ctx.rotate(Math.PI / 2)
-        ctx.drawImage(image,    // PaketShop-Hinweis
-            2140, 350, 70, 1020,
-            650, -20, 35, -510);
-        ctx.rotate(-Math.PI / 2)
-
-        ctx.drawImage(image,    // Absender
-            1100, 425, 580, 260,
-            810, 100, 493, 221);
-
-
-        ctx.drawImage(image,    // Empfänger Code
-            780, 870, 250, 220,
-            560, 370, 225, 198);
-        ctx.drawImage(image,    // Empfänger
-            1100, 865, 580, 260,
-            810, 370, 493, 221);
-        ctx.drawImage(image,    // Empfänger Land
-            1100, 1245, 580, 40,
-            810, 630, 493, 34);
-
-        ctx.drawImage(image,    // Zusatz EU
-            1850, 1325, 230, 140,
-            645, 600, 138, 84);
-        ctx.drawImage(image,    // Zusatz Sperrig (P)
-            1640, 1330, 110, 140,
-            560, 600, 66, 84);
-
-        ctx.drawImage(image,    // Sendungsnummer
-            210, 370, 370, 640,
-            1320, 28, 370, 640);
-
-        // border
-        ctx.lineWidth = 4;
-        ctx.beginPath(); ctx.moveTo(0, 2); ctx.lineTo(this.width, 2); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(0, outputCanvas.height - 2); ctx.lineTo(this.width, outputCanvas.height - 2); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(2, 4); ctx.lineTo(2, outputCanvas.height - 4); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(this.width - 2, 4); ctx.lineTo(this.width - 2, outputCanvas.height - 4); ctx.stroke();
-    }
-};
-
-const hermesPrivatV111 = {
+const hermesPrivatV112 = {
     file: {
         type: 'pdf',
         page: 1,
@@ -514,6 +447,26 @@ const hermesVintedQR = {
         ctx.drawImage(image,   // QR-Code
             440, 226, 632, 632,
             470, 32, 632, 632);
+    }
+};
+
+const hermesVintedEU = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 270
+    },
+    width:  1876,    // 159mm  (=> 165mm)
+    crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,
+            2088, 340, 1135, 696,
+            0, 0, 1135, 696);
+
+        ctx.beginPath(); ctx.moveTo(0, 695); ctx.lineTo(1135, 695); ctx.stroke();
+
+        ctx.drawImage(image,
+            2390, 1020, 730, 696,
+            1145, 0, 730, 696);
     }
 };
 
