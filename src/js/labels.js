@@ -9,7 +9,7 @@ export default function (labelType) {
         case 'dp-briefmarke-short': return dpBriefmarkeShort
         case 'dp-briefmarke-adresse': return dpBriefmarkeAdresse;
         case 'hermes-privat-v102': return hermesPrivatV102;
-        case 'hermes-privat-v111': return hermesPrivatV111;
+        case 'hermes-privat-v112': return hermesPrivatV112;
         case 'hermes-vinted-qr': return hermesVintedQR;
         case 'adidas': return adidasRetoure;
         case 'amazon-dhl': return amazonRetoureDhl;
@@ -403,7 +403,7 @@ const hermesPrivatV102 = {
     }
 };
 
-const hermesPrivatV111 = {
+const hermesPrivatV112 = {
     file: {
         type: 'pdf',
         page: 1,
