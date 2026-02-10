@@ -343,13 +343,13 @@ const dpBriefmarkeBogen = {
         page: 1,
         rotation: 0
     },
-    scale: 4.1666,
+    scale: 3.8,
     width: 402,    // 34mm (=> 40mm)
     crop(outputCanvas, ctx, image) {
         ctx.rotate(-Math.PI / 2)
         ctx.drawImage(image,
-            45, 167, 765, 402,
-            -750, 0, 765, 402);
+            42, 154, 696, 374,
+            -696, 14, 696, 374);
         ctx.rotate(Math.PI / 2)
     }
 };
