@@ -31,6 +31,16 @@ export default function (labelType) {
     };
 }
 
+function isCanvasEmpty(ctx, x, y, width, height) {
+    const imgData = ctx.getImageData(x, y, width, height);
+    for (let i = 0; i < imgData.data.length; i += 4) {
+        if (imgData.data[i]!=0xFF || imgData.data[i+1]!=0xFF || imgData.data[i+2]!=0xFF) {
+            return false; // Found a non-transparent pixel
+        }
+    }
+    return true; // All pixels are transparent
+}
+
 const template = {
     file: {
         type: 'pdf',
@@ -72,6 +82,13 @@ const dhlPrivat = {
         ctx.drawImage(image,   // Bahntransport
             2802, 679, 234, 154,
             666, 465, 152, 100);
+
+        // We didnt render any bahntransport label yet, lets try the second common position
+        if (isCanvasEmpty(ctx, 666, 465, 152, 100)) {
+            ctx.drawImage(image,   // Bahntransport v2
+                2763, 540, 250, 154,
+                666, 465, 152, 100);
+        }
 
         ctx.drawImage(image,   // Sendungsdaten
             1964, 933, 1124, 152,
