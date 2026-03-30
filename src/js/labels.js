@@ -10,6 +10,8 @@ export default function (labelType) {
         case 'dp-briefmarke-adresse': return dpBriefmarkeAdresse;
         case 'dp-briefmarke-bogen':  return dpBriefmarkeBogen;
         case 'dp-briefmarke-bogen-short':  return dpBriefmarkeBogenShort;
+        case 'dp-briefmarke-ebay':  return dpBriefmarkeEbay;
+        case 'dp-briefmarke-ebay-ohne-ebay-logo':  return dpBriefmarkeEbayOhneLogo;
         case 'hermes-privat-v112': return hermesPrivatV112;
         case 'hermes-vinted-qr': return hermesVintedQR;
         case 'hermes-vinted-eu': return hermesVintedEU;
@@ -353,6 +355,38 @@ const dpBriefmarkeBogen = {
             0, -14, 696, -374);
         ctx.rotate(-Math.PI / 2)
     }
+};
+
+const dpBriefmarkeEbay = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 0
+    },
+    scale: 4.1666,
+    width: 900,
+    crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,
+            150, 240, 1350, 680, 0, 0, 1350, 680
+        );
+    }
+
+};
+
+const dpBriefmarkeEbayOhneLogo = {
+    file: {
+        type: 'pdf',
+        page: 1,
+        rotation: 0
+    },
+    scale: 4.1666,
+    width: 830,
+    crop(outputCanvas, ctx, image) {
+        ctx.drawImage(image,
+            150, 240, 820, 680, 0, 0, 820, 680
+        );
+    }
+
 };
 
 const dpBriefmarkeBogenShort = {
