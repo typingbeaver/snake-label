@@ -381,8 +381,8 @@ const hermesPrivatV112 = {
     width: 1642,    // 139mm (=> 145mm)
     crop(outputCanvas, ctx, image) {
         ctx.drawImage(image,    // Titel
-            260, 180, 915, 44,
-            0, 0, 915, 44);
+            260, 162, 915, 48,
+            0, 12, 915, 48);
 
         ctx.drawImage(image,    // Logo
             1628, 155, 472, 66,
@@ -405,23 +405,23 @@ const hermesPrivatV112 = {
             780, 825, 840, 260,
             (400-320), 350, 840, 260);
         ctx.drawImage(image,    // Empfänger Land
-            1100, 1212, 520, 30,
-            400, 650, 520, 30);
+            1100, 1214, 520, 34,
+            400, 648, 520, 34);
 
         ctx.drawImage(image,    // Sendungs-ID
             1100, 315, 350, 85,
             5, 600, 350, 85);
 
-        ctx.beginPath(); ctx.moveTo(950, 0); ctx.lineTo(950, outputCanvas.height); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(950, 12); ctx.lineTo(950, outputCanvas.height - 12); ctx.stroke();
 
         ctx.drawImage(image,    // Zahlungscode
-            250, 1120, 755, 360,
-            1000, 20, 640, 305);
+            250, 1118, 764, 364,
+            998, 16, 644, 307);
 
         ctx.rotate(Math.PI / 2)
         ctx.drawImage(image,    // Sendungsnummer
-            306, 356, 300, 640,
-            380, -990, 300, -640);
+            258, 356, 346, 640,
+            336, -990, 346, -640);
         ctx.rotate(-Math.PI / 2)
     }
 };
