@@ -124,7 +124,7 @@ International returns are most probably better on a real paper sheet/A5 Label.
 
 
 #### `amazon_retoure [dhl]`
-- **Size:** 62x120mm
+- **Size:** 62x139mm
 - **Note:** *Converts displayed GIF Image `ShipperLabel.gif`. No PDF support!*
 
 <!-- ![Sample Image]() -->

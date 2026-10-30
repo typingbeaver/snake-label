@@ -525,31 +525,43 @@ const amazonRetoureDhl = {
     file: {
         type: 'gif',
     },
-    width: 1346,    // 114mm (=> 120mm)
+    width: 1570,    // 133mm content + 6mm margins => 139mm label length
     crop(outputCanvas, ctx, image) {
+        // Keep the original 580px address height, and grow horizontally instead
+        // of squeezing its 695:590 source aspect ratio into a 460px-wide field.
+        const addressHeight = 580;
+        const addressWidth = addressHeight * 695 / 590;
+        const extraWidth = Math.ceil(addressWidth - 460); // 224px
+
+        ctx.imageSmoothingEnabled = false; // Keep barcode edges sharp when scaling.
         ctx.rotate(Math.PI / 2)
 
         ctx.drawImage(image,   // Kopf Logo
-            15, 0, 80, 370,
-            0, -20, 80, -370);
+            120, 85, 55, 320,
+            0, -20, 80, -320 * 80 / 55);
         ctx.drawImage(image,   // Adressdaten
-            0, 605, 580, 460,
-            80, 0, 580, -460);
+            65, 450, 590, 695,
+            80, 0, addressHeight, -addressWidth);
 
-        ctx.beginPath(); ctx.moveTo(12, -470); ctx.lineTo(outputCanvas.height - 12, -470); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(12, -470 - extraWidth); ctx.lineTo(outputCanvas.height - 12, -470 - extraWidth); ctx.stroke();
 
         ctx.drawImage(image,   // Auftragsnummer
-            730, 150, 160, 800,
-            15, -520, 160, -800);
+            675, 200, 315, 945,
+            15, -520 - extraWidth, 160, -800);
 
         let barcodeSizeX = 220,
             barcodeSizeY = 600;
         ctx.drawImage(image,   // Leitcode/Routingcode
-            1110, 280, barcodeSizeX, barcodeSizeY,
-            220, -620, barcodeSizeX, -barcodeSizeY);
+            1015, 280, 380, 865,
+            220, -620 - extraWidth, barcodeSizeX, -barcodeSizeY);
         ctx.drawImage(image,   // Identcode/Sendungsnummer
-            1540, 290, barcodeSizeX, barcodeSizeY,
-            465, -660, barcodeSizeX, -barcodeSizeY);
+            1410, 410, 370, 420,
+            465, -660 - extraWidth, barcodeSizeX, -barcodeSizeY);
+        // The caption sits outside the tightly cropped barcode in the new GIF.
+        // Place it in the existing field's top margin, keeping the barcode intact.
+        ctx.drawImage(image,   // Identcode caption
+            1415, 990, 40, 155,
+            465, -660 - extraWidth, 30, -155);
     }
 };
 
